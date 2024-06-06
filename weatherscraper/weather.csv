@@ -1,21 +1,15 @@
-day,weather_condition,temp_high,temp_low,precipitation,wind
-,,,,,
-,,,,,
-,,,,,
-,,,,,
-,,,,,
-Tonight,Cloudy,--,54,8%, 
-Tue 04,AM Clouds/PM Sun,69,56,19%, 
-Wed 05,PM Showers,70,51,39%, 
-Thu 06,Mostly Cloudy,70,54,4%, 
-Fri 07,Partly Cloudy,72,53,5%, 
-Sat 08,Partly Cloudy,74,54,6%, 
-Sun 09,Partly Cloudy,72,51,8%, 
-Mon 10,Partly Cloudy,70,53,8%, 
-Tue 11,Partly Cloudy,71,54,14%, 
-Wed 12,AM Showers,71,55,35%, 
-Thu 13,Partly Cloudy,74,58,15%, 
-Fri 14,Partly Cloudy,76,58,22%, 
-Sat 15,Partly Cloudy,78,60,23%, 
-Sun 16,Partly Cloudy,77,62,24%, 
-Mon 17,AM Showers,76,61,32%, 
+day,precipitation,temp_high,temp_low,weather_condition,wind
+2024-06-06,5%,21.11,9.44,Partly-Cloudy,8
+2024-06-07,5%,21.11,11.11,Partly-Cloudy,8
+2024-06-08,3%,24.44,11.11,Partly-Cloudy,12
+2024-06-09,4%,21.11,10.56,Partly-Cloudy,9
+2024-06-10,3%,21.11,10.56,Partly-Cloudy,11
+2024-06-11,18%,21.11,10.56,Partly-Cloudy,9
+2024-06-12,15%,21.11,11.67,Partly-Cloudy,9
+2024-06-13,19%,21.11,12.22,Mostly-Cloudy,10
+2024-06-14,18%,20.56,12.22,Partly-Cloudy,10
+2024-06-15,24%,22.22,13.89,Partly-Cloudy,10
+2024-06-16,24%,23.33,14.44,Partly-Cloudy,9
+2024-06-17,24%,24.44,15.0,Partly-Cloudy,10
+2024-06-18,24%,22.22,15.0,Partly-Cloudy,11
+2024-06-19,24%,23.89,15.0,Partly-Cloudy,11

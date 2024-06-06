@@ -11,7 +11,7 @@ BOT_NAME = "weatherscraper"
 
 SPIDER_MODULES = ["weatherscraper.spiders"]
 NEWSPIDER_MODULE = "weatherscraper.spiders"
-
+LOG_LEVEL = 'ERROR'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = "weatherscraper (+http://www.yourdomain.com)"
@@ -62,9 +62,9 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    "weatherscraper.pipelines.WeatherscraperPipeline": 300,
-#}
+ITEM_PIPELINES = {
+    'weatherscraper.pipelines.WeatherPipeline': 100,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
