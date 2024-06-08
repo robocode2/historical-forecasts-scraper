@@ -1,3 +1,5 @@
+from shutil import which
+
 # Scrapy settings for weatherscraper project
 #
 # For simplicity, this file contains only settings considered important or
@@ -50,9 +52,15 @@ ROBOTSTXT_OBEY = True
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    "weatherscraper.middlewares.WeatherscraperDownloaderMiddleware": 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+    'scrapy_selenium.SeleniumMiddleware': 800,
+}
+
+SELENIUM_DRIVER_NAME = 'chrome'
+SELENIUM_DRIVER_ARGUMENTS = [] 
+# Other Scrapy settings
+ROBOTSTXT_OBEY = True
+
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
@@ -91,3 +99,5 @@ ITEM_PIPELINES = {
 REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
+
+
