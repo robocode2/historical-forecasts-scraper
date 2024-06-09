@@ -1,0 +1,151 @@
+city,country,date,day,precipitation,state,temp_high,temp_low,weather_condition,wind
+Hamburg-Altstadt,Germany,2024-06-09,2024-06-09,7%,,--,8,partly_cloudy,12
+Hamburg-Altstadt,Germany,2024-06-09,2024-06-10,81%,,15,10,pm_rain,16
+Hamburg-Altstadt,Germany,2024-06-09,2024-06-11,77%,,14,9,showers,25
+Hamburg-Altstadt,Germany,2024-06-09,2024-06-12,38%,,15,8,am_showers,21
+Hamburg-Altstadt,Germany,2024-06-09,2024-06-13,32%,,16,11,pm_showers,16
+Hamburg-Altstadt,Germany,2024-06-09,2024-06-14,24%,,20,13,cloudy,15
+Hamburg-Altstadt,Germany,2024-06-09,2024-06-15,52%,,20,13,showers,16
+Hamburg-Altstadt,Germany,2024-06-09,2024-06-16,67%,,21,13,showers,16
+Hamburg-Altstadt,Germany,2024-06-09,2024-06-17,53%,,21,14,showers,16
+Hamburg-Altstadt,Germany,2024-06-09,2024-06-18,60%,,22,14,thundershowers,16
+Hamburg-Altstadt,Germany,2024-06-09,2024-06-19,50%,,22,14,scattered_thunderstorms,16
+Hamburg-Altstadt,Germany,2024-06-09,2024-06-20,53%,,21,13,showers,16
+Hamburg-Altstadt,Germany,2024-06-09,2024-06-21,38%,,21,13,pm_showers,18
+Hamburg-Altstadt,Germany,2024-06-09,2024-06-22,44%,,20,14,showers,19
+Hamburg-Altstadt,Germany,2024-06-09,2024-06-23,45%,,20,13,showers,19
+Quartier Saint-Merri,France,2024-06-09,2024-06-09,6%,,--,11,mostly_clear,15
+Quartier Saint-Merri,France,2024-06-09,2024-06-10,40%,,18,8,pm_showers,21
+Quartier Saint-Merri,France,2024-06-09,2024-06-11,24%,,19,9,partly_cloudy,12
+Quartier Saint-Merri,France,2024-06-09,2024-06-12,13%,,19,10,partly_cloudy,9
+Quartier Saint-Merri,France,2024-06-09,2024-06-13,5%,,21,14,mostly_cloudy,14
+Quartier Saint-Merri,France,2024-06-09,2024-06-14,49%,,21,14,showers,20
+Quartier Saint-Merri,France,2024-06-09,2024-06-15,52%,,20,13,showers,18
+Quartier Saint-Merri,France,2024-06-09,2024-06-16,54%,,20,14,showers,18
+Quartier Saint-Merri,France,2024-06-09,2024-06-17,45%,,22,14,showers,16
+Quartier Saint-Merri,France,2024-06-09,2024-06-18,38%,,21,13,showers,16
+Quartier Saint-Merri,France,2024-06-09,2024-06-19,44%,,20,13,showers,14
+Quartier Saint-Merri,France,2024-06-09,2024-06-20,24%,,20,13,partly_cloudy,15
+Quartier Saint-Merri,France,2024-06-09,2024-06-21,24%,,20,14,partly_cloudy,16
+Quartier Saint-Merri,France,2024-06-09,2024-06-22,43%,,20,13,showers,16
+Quartier Saint-Merri,France,2024-06-09,2024-06-23,40%,,21,14,am_showers,15
+St James's,United Kingdom,2024-06-09,2024-06-09,89%,England,--,11,showers,18
+St James's,United Kingdom,2024-06-09,2024-06-10,42%,England,15,8,pm_showers,23
+St James's,United Kingdom,2024-06-09,2024-06-11,24%,England,16,9,mostly_cloudy,12
+St James's,United Kingdom,2024-06-09,2024-06-12,22%,England,17,9,mostly_cloudy,12
+St James's,United Kingdom,2024-06-09,2024-06-13,20%,England,17,12,cloudy,18
+St James's,United Kingdom,2024-06-09,2024-06-14,43%,England,17,12,showers,21
+St James's,United Kingdom,2024-06-09,2024-06-15,46%,England,18,12,showers,21
+St James's,United Kingdom,2024-06-09,2024-06-16,42%,England,18,12,showers,20
+St James's,United Kingdom,2024-06-09,2024-06-17,46%,England,19,12,showers,20
+St James's,United Kingdom,2024-06-09,2024-06-18,42%,England,19,12,showers,19
+St James's,United Kingdom,2024-06-09,2024-06-19,46%,England,19,11,showers,16
+St James's,United Kingdom,2024-06-09,2024-06-20,37%,England,19,12,showers,16
+St James's,United Kingdom,2024-06-09,2024-06-21,38%,England,19,13,pm_showers,19
+St James's,United Kingdom,2024-06-09,2024-06-22,31%,England,20,12,am_showers,18
+St James's,United Kingdom,2024-06-09,2024-06-23,24%,England,20,13,mostly_cloudy,17
+Justicia,Spain,2024-06-09,2024-06-09,59%,Madrid,--,14,showers_late,9
+Justicia,Spain,2024-06-09,2024-06-10,58%,Madrid,21,12,showers,9
+Justicia,Spain,2024-06-09,2024-06-11,5%,Madrid,26,12,mostly_sunny,11
+Justicia,Spain,2024-06-09,2024-06-12,24%,Madrid,26,13,mostly_sunny,14
+Justicia,Spain,2024-06-09,2024-06-13,2%,Madrid,29,14,partly_cloudy,22
+Justicia,Spain,2024-06-09,2024-06-14,5%,Madrid,27,14,partly_cloudy,20
+Justicia,Spain,2024-06-09,2024-06-15,12%,Madrid,28,13,partly_cloudy,17
+Justicia,Spain,2024-06-09,2024-06-16,2%,Madrid,29,14,sunny,14
+Justicia,Spain,2024-06-09,2024-06-17,1%,Madrid,30,15,sunny,19
+Justicia,Spain,2024-06-09,2024-06-18,3%,Madrid,28,14,sunny,21
+Justicia,Spain,2024-06-09,2024-06-19,7%,Madrid,27,12,mostly_sunny,17
+Justicia,Spain,2024-06-09,2024-06-20,6%,Madrid,27,13,mostly_sunny,16
+Justicia,Spain,2024-06-09,2024-06-21,1%,Madrid,30,14,mostly_sunny,13
+Justicia,Spain,2024-06-09,2024-06-22,1%,Madrid,32,16,mostly_sunny,11
+Justicia,Spain,2024-06-09,2024-06-23,0%,Madrid,33,17,mostly_sunny,13
+Monti,Italy,2024-06-09,2024-06-09,95%,Rome,--,21,scattered_thunderstorms,18
+Monti,Italy,2024-06-09,2024-06-10,8%,Rome,27,20,partly_cloudy,19
+Monti,Italy,2024-06-09,2024-06-11,4%,Rome,28,19,mostly_cloudy,17
+Monti,Italy,2024-06-09,2024-06-12,14%,Rome,27,18,sunny,20
+Monti,Italy,2024-06-09,2024-06-13,11%,Rome,28,16,sunny,18
+Monti,Italy,2024-06-09,2024-06-14,3%,Rome,29,17,partly_cloudy,17
+Monti,Italy,2024-06-09,2024-06-15,9%,Rome,29,19,partly_cloudy,16
+Monti,Italy,2024-06-09,2024-06-16,5%,Rome,31,20,partly_cloudy,19
+Monti,Italy,2024-06-09,2024-06-17,2%,Rome,32,20,sunny,17
+Monti,Italy,2024-06-09,2024-06-18,2%,Rome,33,21,sunny,17
+Monti,Italy,2024-06-09,2024-06-19,3%,Rome,33,21,sunny,19
+Monti,Italy,2024-06-09,2024-06-20,14%,Rome,32,20,mostly_sunny,18
+Monti,Italy,2024-06-09,2024-06-21,19%,Rome,30,19,sunny,20
+Monti,Italy,2024-06-09,2024-06-22,6%,Rome,30,19,mostly_sunny,19
+Monti,Italy,2024-06-09,2024-06-23,7%,Rome,30,19,mostly_sunny,19
+Athens,Greece,2024-06-09,2024-06-09,0%,Attica,--,24,partly_cloudy,4
+Athens,Greece,2024-06-09,2024-06-10,0%,Attica,36,24,mostly_sunny,16
+Athens,Greece,2024-06-09,2024-06-11,0%,Attica,37,26,sunny,16
+Athens,Greece,2024-06-09,2024-06-12,0%,Attica,39,27,mostly_sunny,16
+Athens,Greece,2024-06-09,2024-06-13,0%,Attica,40,27,mostly_sunny,17
+Athens,Greece,2024-06-09,2024-06-14,0%,Attica,37,22,partly_cloudy,16
+Athens,Greece,2024-06-09,2024-06-15,0%,Attica,34,22,sunny,15
+Athens,Greece,2024-06-09,2024-06-16,0%,Attica,34,23,sunny,15
+Athens,Greece,2024-06-09,2024-06-17,0%,Attica,35,24,sunny,17
+Athens,Greece,2024-06-09,2024-06-18,0%,Attica,36,24,sunny,18
+Athens,Greece,2024-06-09,2024-06-19,0%,Attica,36,24,sunny,22
+Athens,Greece,2024-06-09,2024-06-20,0%,Attica,36,25,sunny,21
+Athens,Greece,2024-06-09,2024-06-21,0%,Attica,37,25,sunny,20
+Athens,Greece,2024-06-09,2024-06-22,0%,Attica,37,25,sunny,19
+Athens,Greece,2024-06-09,2024-06-23,0%,Attica,36,24,sunny,19
+Oslo,Norway,2024-06-09,2024-06-09,37%,,--,6,showers_early,9
+Oslo,Norway,2024-06-09,2024-06-10,17%,,18,8,cloudy,17
+Oslo,Norway,2024-06-09,2024-06-11,13%,,19,10,partly_cloudy,9
+Oslo,Norway,2024-06-09,2024-06-12,87%,,14,9,rain,13
+Oslo,Norway,2024-06-09,2024-06-13,51%,,14,9,showers,15
+Oslo,Norway,2024-06-09,2024-06-14,24%,,16,9,partly_cloudy,13
+Oslo,Norway,2024-06-09,2024-06-15,39%,,18,11,showers,13
+Oslo,Norway,2024-06-09,2024-06-16,50%,,20,12,showers,15
+Oslo,Norway,2024-06-09,2024-06-17,61%,,19,12,showers,15
+Oslo,Norway,2024-06-09,2024-06-18,40%,,20,12,showers,15
+Oslo,Norway,2024-06-09,2024-06-19,47%,,21,13,showers,14
+Oslo,Norway,2024-06-09,2024-06-20,45%,,22,13,showers,14
+Oslo,Norway,2024-06-09,2024-06-21,44%,,22,13,showers,15
+Oslo,Norway,2024-06-09,2024-06-22,46%,,21,13,showers,13
+Oslo,Norway,2024-06-09,2024-06-23,41%,,22,13,showers,14
+Stockholm,Sweden,2024-06-09,2024-06-09,8%,Stockholm,--,8,partly_cloudy,18
+Stockholm,Sweden,2024-06-09,2024-06-10,78%,Stockholm,14,9,showers,28
+Stockholm,Sweden,2024-06-09,2024-06-11,24%,Stockholm,19,9,mostly_sunny,13
+Stockholm,Sweden,2024-06-09,2024-06-12,35%,Stockholm,18,10,pm_showers,14
+Stockholm,Sweden,2024-06-09,2024-06-13,22%,Stockholm,16,10,partly_cloudy,18
+Stockholm,Sweden,2024-06-09,2024-06-14,35%,Stockholm,18,10,am_showers,17
+Stockholm,Sweden,2024-06-09,2024-06-15,21%,Stockholm,19,12,partly_cloudy,17
+Stockholm,Sweden,2024-06-09,2024-06-16,32%,Stockholm,20,13,am_showers,17
+Stockholm,Sweden,2024-06-09,2024-06-17,39%,Stockholm,22,13,showers,18
+Stockholm,Sweden,2024-06-09,2024-06-18,12%,Stockholm,23,14,partly_cloudy,17
+Stockholm,Sweden,2024-06-09,2024-06-19,24%,Stockholm,23,14,partly_cloudy,16
+Stockholm,Sweden,2024-06-09,2024-06-20,21%,Stockholm,23,14,partly_cloudy,18
+Stockholm,Sweden,2024-06-09,2024-06-21,33%,Stockholm,23,14,am_showers,16
+Stockholm,Sweden,2024-06-09,2024-06-22,20%,Stockholm,23,14,partly_cloudy,17
+Stockholm,Sweden,2024-06-09,2024-06-23,24%,Stockholm,22,14,partly_cloudy,17
+Copenhagen,Denmark,2024-06-09,2024-06-09,8%,Capital Region of Denmark,--,10,mostly_clear,22
+Copenhagen,Denmark,2024-06-09,2024-06-10,10%,Capital Region of Denmark,18,10,mostly_cloudy,27
+Copenhagen,Denmark,2024-06-09,2024-06-11,63%,Capital Region of Denmark,16,10,showers,19
+Copenhagen,Denmark,2024-06-09,2024-06-12,18%,Capital Region of Denmark,15,9,am_clouds/pm_sun,25
+Copenhagen,Denmark,2024-06-09,2024-06-13,51%,Capital Region of Denmark,15,10,showers,21
+Copenhagen,Denmark,2024-06-09,2024-06-14,21%,Capital Region of Denmark,17,13,partly_cloudy,18
+Copenhagen,Denmark,2024-06-09,2024-06-15,45%,Capital Region of Denmark,18,13,showers,19
+Copenhagen,Denmark,2024-06-09,2024-06-16,51%,Capital Region of Denmark,20,13,showers,20
+Copenhagen,Denmark,2024-06-09,2024-06-17,46%,Capital Region of Denmark,20,14,showers,19
+Copenhagen,Denmark,2024-06-09,2024-06-18,41%,Capital Region of Denmark,21,14,showers,19
+Copenhagen,Denmark,2024-06-09,2024-06-19,24%,Capital Region of Denmark,21,14,partly_cloudy,19
+Copenhagen,Denmark,2024-06-09,2024-06-20,38%,Capital Region of Denmark,21,14,few_showers,19
+Copenhagen,Denmark,2024-06-09,2024-06-21,40%,Capital Region of Denmark,20,14,am_showers,20
+Copenhagen,Denmark,2024-06-09,2024-06-22,36%,Capital Region of Denmark,21,14,am_showers,20
+Copenhagen,Denmark,2024-06-09,2024-06-23,49%,Capital Region of Denmark,21,15,showers,21
+Helsinki,Finland,2024-06-09,2024-06-09,100%,Uusimaa,--,11,rain,27
+Helsinki,Finland,2024-06-09,2024-06-10,51%,Uusimaa,17,13,am_showers,27
+Helsinki,Finland,2024-06-09,2024-06-11,48%,Uusimaa,17,12,am_showers,25
+Helsinki,Finland,2024-06-09,2024-06-12,54%,Uusimaa,18,12,am_showers,19
+Helsinki,Finland,2024-06-09,2024-06-13,24%,Uusimaa,17,11,partly_cloudy,20
+Helsinki,Finland,2024-06-09,2024-06-14,22%,Uusimaa,18,12,partly_cloudy,18
+Helsinki,Finland,2024-06-09,2024-06-15,15%,Uusimaa,19,14,partly_cloudy,13
+Helsinki,Finland,2024-06-09,2024-06-16,21%,Uusimaa,20,15,partly_cloudy,17
+Helsinki,Finland,2024-06-09,2024-06-17,24%,Uusimaa,22,16,partly_cloudy,16
+Helsinki,Finland,2024-06-09,2024-06-18,41%,Uusimaa,21,16,showers,16
+Helsinki,Finland,2024-06-09,2024-06-19,33%,Uusimaa,22,16,am_showers,16
+Helsinki,Finland,2024-06-09,2024-06-20,39%,Uusimaa,22,16,showers,16
+Helsinki,Finland,2024-06-09,2024-06-21,24%,Uusimaa,22,16,partly_cloudy,18
+Helsinki,Finland,2024-06-09,2024-06-22,19%,Uusimaa,23,16,partly_cloudy,17
+Helsinki,Finland,2024-06-09,2024-06-23,24%,Uusimaa,23,16,partly_cloudy,16

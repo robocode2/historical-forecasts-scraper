@@ -30,7 +30,7 @@ class WeatherSpider(scrapy.Spider):
     def start_requests(self):
         # Iterate over each location
         for location in self.locations:
-            url = location.get('url') 
+            url = location.get('url') + '?unit=m'
             yield SeleniumRequest(url=url, callback=self.parse, wait_time=10)
 
     def parse(self, response):
