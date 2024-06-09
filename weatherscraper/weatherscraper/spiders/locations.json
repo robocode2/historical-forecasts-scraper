@@ -1,0 +1,52 @@
+[
+  {
+    "city": "Berlin",
+    "country": "Germany",
+    "url": "https://weather.com/weather/tenday/l/53.55,10.00"
+  },
+  {
+    "city": "Paris",
+    "country": "France",
+    "url": "https://weather.com/weather/tenday/l/48.86,2.35"
+  },
+  {
+    "city": "London",
+    "country": "United Kingdom",
+    "url": "https://weather.com/weather/tenday/l/51.51,-0.13"
+  },
+  {
+    "city": "Madrid",
+    "country": "Spain",
+    "url": "https://weather.com/weather/tenday/l/40.42,-3.70"
+  },
+  {
+    "city": "Rome",
+    "country": "Italy",
+    "url": "https://weather.com/weather/tenday/l/41.90,12.49"
+  },
+  {
+    "city": "Athens",
+    "country": "Greece",
+    "url": "https://weather.com/weather/tenday/l/37.98,23.72"
+  },
+  {
+    "city": "Oslo",
+    "country": "Norway",
+    "url": "https://weather.com/weather/tenday/l/59.91,10.75"
+  },
+  {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "url": "https://weather.com/weather/tenday/l/59.33,18.06"
+  },
+  {
+    "city": "Copenhagen",
+    "country": "Denmark",
+    "url": "https://weather.com/weather/tenday/l/55.68,12.57"
+  },
+  {
+    "city": "Helsinki",
+    "country": "Finland",
+    "url": "https://weather.com/weather/tenday/l/60.17,24.94"
+  }
+]

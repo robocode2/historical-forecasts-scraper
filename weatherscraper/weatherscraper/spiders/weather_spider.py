@@ -1,24 +1,36 @@
-from datetime import datetime
+import json
 import scrapy
+from datetime import datetime
+import time
+import os
 from scrapy_selenium import SeleniumRequest
 from weatherscraper.items import DayForecastItem
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import time
 
 class WeatherSpider(scrapy.Spider):
     name = "weather"
-    start_urls = [
-        "https://weather.com/weather/tenday/l/153e65f344ab389e17703aae99cf18a182265e8095831d55ddfcfc6c5aa9a91c?unit=m"
-    ]
+    locations = []  # Initialize locations as an empty list
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.items_seen = 0  # Counter for the items seen
+         # Read the JSON file and load locations
+        try:
+            # Get the directory of the current script
+            current_dir = os.path.dirname(os.path.realpath(__file__))
+            json_file_path = os.path.join(current_dir, 'locations.json')
+
+            with open(json_file_path, 'r') as file:
+                self.locations = json.load(file)
+        except FileNotFoundError:
+            self.logger.error("locations.json file not found. Please make sure it exists and contains valid data.")
 
     def start_requests(self):
-        for url in self.start_urls:
+        # Iterate over each location
+        for location in self.locations:
+            url = location.get('url') 
             yield SeleniumRequest(url=url, callback=self.parse, wait_time=10)
 
     def parse(self, response):

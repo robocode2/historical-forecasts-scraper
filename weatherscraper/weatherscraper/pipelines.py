@@ -5,27 +5,27 @@
 
 
 # useful for handling different item types with a single interface
-from itemadapter import ItemAdapter
-
-
 from datetime import datetime, timedelta
-import csv
 
 class WeatherPipeline:
     def __init__(self):
-        self.first_date = None
+        self.current_city = None
+        self.start_date = None
         self.date_delta = timedelta(days=1)
-    
+
     def process_item(self, item, spider):
         # Remove White Space in Weather Condition
         item['weather_condition'] = item['weather_condition'].lower().replace(' ', '_')
+
+        # Check if we are processing a new city
+        if self.current_city != item['city']:
+            self.current_city = item['city']
+            self.start_date = datetime.strptime('2024-06-09', '%Y-%m-%d')  # Reset start date for new city
         
-        # Enter Correct Dates
-        if self.first_date is None:
-            self.first_date = datetime.now().strftime('%Y-%m-%d')
-        else:
-            self.first_date = (datetime.strptime(self.first_date, '%Y-%m-%d') + self.date_delta).strftime('%Y-%m-%d')
-        item['day'] = self.first_date
+        # Set the date for the item
+        item['day'] = self.start_date.strftime('%Y-%m-%d')
         
-        
+        # Increment the start date for the next item in the same city
+        self.start_date += self.date_delta
+
         return item
