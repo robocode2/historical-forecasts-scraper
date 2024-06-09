@@ -18,7 +18,7 @@ class WeatherPipeline:
     
     def process_item(self, item, spider):
         # Remove White Space in Weather Condition
-        #item['weather_condition'] = item['weather_condition'].replace(' ', '-')
+        item['weather_condition'] = item['weather_condition'].lower().replace(' ', '_')
         
         # Enter Correct Dates
         if self.first_date is None:

@@ -1,3 +1,4 @@
+from datetime import datetime
 import scrapy
 from scrapy_selenium import SeleniumRequest
 from weatherscraper.items import DayForecastItem
@@ -11,6 +12,10 @@ class WeatherSpider(scrapy.Spider):
     start_urls = [
         "https://weather.com/weather/tenday/l/153e65f344ab389e17703aae99cf18a182265e8095831d55ddfcfc6c5aa9a91c?unit=m"
     ]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.items_seen = 0  # Counter for the items seen
 
     def start_requests(self):
         for url in self.start_urls:
@@ -40,8 +45,27 @@ class WeatherSpider(scrapy.Spider):
             EC.presence_of_element_located((By.CSS_SELECTOR, 'summary.Disclosure--Summary--3GiL4'))
         )
         
+        # Scrape the location
+        location = response.css('span.LocationPageTitle--PresentationName--1AMA6::text').get()
+        city, state, country = None, None, None
+        
+        if location:
+            location_parts = location.split(", ")
+            if len(location_parts) == 3:
+                city, state, country = location_parts
+            elif len(location_parts) == 2:
+                city, country = location_parts
+
         for day in response.css('summary.Disclosure--Summary--3GiL4'):
+            self.items_seen += 1
+            if self.items_seen <= 5:
+                continue  # Skip the first 5 items
+
             item = DayForecastItem()
+            item['country'] = country
+            item['state'] = state
+            item['city'] = city
+            item['date'] = datetime.now().strftime('%Y-%m-%d')
             item['day'] = day.css('h2.DetailsSummary--daypartName--kbngc::text').get()
             item['weather_condition'] = day.css('div.DetailsSummary--condition--2JmHb span::text').get()
             item['temp_high'] = day.css('span.DetailsSummary--highTempValue--3PjlX::text').get()
