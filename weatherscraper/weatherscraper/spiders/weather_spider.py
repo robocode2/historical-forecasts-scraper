@@ -15,7 +15,6 @@ class WeatherSpider(scrapy.Spider):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.items_seen = 0  # Counter for the items seen
          # Read the JSON file and load locations
         try:
             # Get the directory of the current script
@@ -67,11 +66,12 @@ class WeatherSpider(scrapy.Spider):
                 city, state, country = location_parts
             elif len(location_parts) == 2:
                 city, country = location_parts
-
+                
+        skip_first_five_counter = 0
         for day in response.css('summary.Disclosure--Summary--3GiL4'):
-            self.items_seen += 1
-            if self.items_seen <= 5:
-                continue  # Skip the first 5 items
+            skip_first_five_counter += 1
+            if skip_first_five_counter <= 5:
+                continue  # Skip the first 6 items
 
             item = DayForecastItem()
             item['country'] = country
@@ -84,5 +84,4 @@ class WeatherSpider(scrapy.Spider):
             item['temp_low'] = day.css('span.DetailsSummary--lowTempValue--2tesQ::text').get()
             item['precipitation'] = day.css('div.DetailsSummary--precip--1a98O span::text').get()
             item['wind'] = day.css('span[data-testid="Wind"] span:nth-child(2)::text').extract_first()
-
             yield item

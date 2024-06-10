@@ -6,26 +6,39 @@
 
 # useful for handling different item types with a single interface
 from datetime import datetime, timedelta
+from scrapy.exceptions import DropItem
 
 class WeatherPipeline:
     def __init__(self):
-        self.current_city = None
-        self.start_date = None
-        self.date_delta = timedelta(days=1)
+        self.city_start_dates = {}
 
     def process_item(self, item, spider):
+        city = item['city']
+        
         # Remove White Space in Weather Condition
         item['weather_condition'] = item['weather_condition'].lower().replace(' ', '_')
 
-        # Check if we are processing a new city
-        if self.current_city != item['city']:
-            self.current_city = item['city']
-            self.start_date = datetime.strptime('2024-06-09', '%Y-%m-%d')  # Reset start date for new city
+        # Get the current date
+        current_date = datetime.now().strftime('%Y-%m-%d')
         
-        # Set the date for the item
-        item['day'] = self.start_date.strftime('%Y-%m-%d')
+        # Set the item's date to the current date
+        item['date'] = current_date
         
-        # Increment the start date for the next item in the same city
-        self.start_date += self.date_delta
-
-        return item
+        # Check if this is a new city or if the city hasn't been seen before
+        if city not in self.city_start_dates:
+            self.city_start_dates[city] = current_date  # Set the start date for this city
+        else:
+            # Increment the day by one from the previous value
+            prev_day = datetime.strptime(self.city_start_dates[city], '%Y-%m-%d')
+            next_day = prev_day + timedelta(days=1)
+            self.city_start_dates[city] = next_day.strftime('%Y-%m-%d')
+        
+        # Set the item's day
+        item['day'] = self.city_start_dates[city]
+        
+        # Check if item['date'] is equal to item['day']
+        if item['date'] == item['day']:
+            # Ignore setting the date
+            return
+        else:
+            return item
