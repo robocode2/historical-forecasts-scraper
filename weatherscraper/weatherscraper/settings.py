@@ -72,7 +72,11 @@ ROBOTSTXT_OBEY = True
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
     'weatherscraper.pipelines.WeatherPipeline': 100,
+    'weatherscraper.pipelines.PostgreSQLPipeline': 200,
+
 }
+
+DATABASE_URL = "postgres://postgres:IDnowLOV123@127.0.0.1:5432/weather_forecasts"
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

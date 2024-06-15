@@ -71,7 +71,7 @@ class WeatherSpider(scrapy.Spider):
         for day in response.css('summary.Disclosure--Summary--3GiL4'):
             skip_first_five_counter += 1
             if skip_first_five_counter <= 5:
-                continue  # Skip the first 6 items
+                continue  # Skip the first 5 items
 
             item = DayForecastItem()
             item['country'] = country
