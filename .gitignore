@@ -126,6 +126,9 @@ celerybeat.pid
 # dotenv
 .env
 
+# idea
+.idea
+
 # virtualenv
 *.cover
 .hypothesis/

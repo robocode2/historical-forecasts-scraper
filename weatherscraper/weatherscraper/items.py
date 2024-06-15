@@ -6,7 +6,11 @@
 import scrapy
 
 
-class MultipleDayForecastItem(scrapy.Item):
+class DayForecastItem(scrapy.Item):
+   country = scrapy.Field()
+   state = scrapy.Field()
+   city = scrapy.Field()
+   date = scrapy.Field()
    day = scrapy.Field()
    weather_condition = scrapy.Field()
    temp_high = scrapy.Field()

@@ -1,3 +1,5 @@
+from shutil import which
+
 # Scrapy settings for weatherscraper project
 #
 # For simplicity, this file contains only settings considered important or
@@ -11,7 +13,7 @@ BOT_NAME = "weatherscraper"
 
 SPIDER_MODULES = ["weatherscraper.spiders"]
 NEWSPIDER_MODULE = "weatherscraper.spiders"
-
+LOG_LEVEL = 'ERROR'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = "weatherscraper (+http://www.yourdomain.com)"
@@ -50,9 +52,15 @@ ROBOTSTXT_OBEY = True
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    "weatherscraper.middlewares.WeatherscraperDownloaderMiddleware": 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+    'scrapy_selenium.SeleniumMiddleware': 800,
+}
+
+SELENIUM_DRIVER_NAME = 'chrome'
+SELENIUM_DRIVER_ARGUMENTS = [] 
+# Other Scrapy settings
+ROBOTSTXT_OBEY = True
+
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
@@ -62,9 +70,13 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    "weatherscraper.pipelines.WeatherscraperPipeline": 300,
-#}
+ITEM_PIPELINES = {
+    'weatherscraper.pipelines.WeatherPipeline': 100,
+    'weatherscraper.pipelines.PostgreSQLPipeline': 200,
+
+}
+
+DATABASE_URL = "postgres://postgres:IDnowLOV123@127.0.0.1:5432/weather_forecasts"
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
@@ -91,3 +103,5 @@ ROBOTSTXT_OBEY = True
 REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
+
+

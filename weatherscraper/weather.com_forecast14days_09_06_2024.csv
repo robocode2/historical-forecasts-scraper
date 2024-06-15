@@ -1,0 +1,16 @@
+city,country,date,day,precipitation,state,temp_high,temp_low,weather_condition,wind
+Berlin,Germany,2024-06-09,2024-06-09,5%,,--,10,partly_cloudy,20
+Berlin,Germany,2024-06-09,2024-06-10,3%,,19,11,mostly_cloudy,17
+Berlin,Germany,2024-06-09,2024-06-11,24%,,18,9,am_clouds/pm_sun,28
+Berlin,Germany,2024-06-09,2024-06-12,7%,,19,8,partly_cloudy,18
+Berlin,Germany,2024-06-09,2024-06-13,7%,,20,11,partly_cloudy,12
+Berlin,Germany,2024-06-09,2024-06-14,5%,,23,14,mostly_cloudy,14
+Berlin,Germany,2024-06-09,2024-06-15,16%,,25,15,mostly_cloudy,17
+Berlin,Germany,2024-06-09,2024-06-16,38%,,25,15,am_showers,15
+Berlin,Germany,2024-06-09,2024-06-17,24%,,25,15,partly_cloudy,16
+Berlin,Germany,2024-06-09,2024-06-18,24%,,26,17,partly_cloudy,16
+Berlin,Germany,2024-06-09,2024-06-19,41%,,27,16,scattered_thunderstorms,13
+Berlin,Germany,2024-06-09,2024-06-20,49%,,24,15,showers,16
+Berlin,Germany,2024-06-09,2024-06-21,48%,,24,15,showers,15
+Berlin,Germany,2024-06-09,2024-06-22,52%,,24,15,am_showers,17
+Berlin,Germany,2024-06-09,2024-06-23,35%,,24,15,am_showers,17
