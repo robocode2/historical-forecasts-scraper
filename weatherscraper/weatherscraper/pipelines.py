@@ -38,7 +38,7 @@ class WeatherPipeline:
         
         return item
         
-"""         # Check if item['date'] is equal to item['day']
+"""    commit this separately     # Check if item['date'] is equal to item['day']
         if item['date'] == item['day']:
             # Ignore setting the date
             return
@@ -59,7 +59,7 @@ class PostgreSQLPipeline:
         self.connection.close()
  
    def process_item(self, item, spider):
-        if spider.name == 'weather':  # Replace with your actual spider name
+        if spider.name == 'TheWeatherChannel':
             try:
                 # Insert City if not exists
                 self.cursor.execute("""

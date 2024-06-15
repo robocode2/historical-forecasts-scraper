@@ -9,8 +9,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-class WeatherSpider(scrapy.Spider):
-    name = "weather"
+class TheWeatherChannelSpider(scrapy.Spider):
+    name = "TheWeatherChannel"
     locations = []  # Initialize locations as an empty list
 
     def __init__(self, *args, **kwargs):
