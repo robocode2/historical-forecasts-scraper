@@ -1,5 +1,8 @@
 from shutil import which
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 # Scrapy settings for weatherscraper project
 #
 # For simplicity, this file contains only settings considered important or
@@ -75,8 +78,8 @@ ITEM_PIPELINES = {
     'weatherscraper.pipelines.PostgreSQLPipeline': 200,
 
 }
+DATABASE_URL = os.getenv('PROD_DATABASE_URL')
 
-DATABASE_URL = "postgres://postgres:IDnowLOV123@127.0.0.1:5432/weather_forecasts"
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
