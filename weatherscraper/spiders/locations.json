@@ -1,0 +1,27 @@
+[
+  {
+    "city": "Hamburg",
+    "country": "Germany",
+    "url": "https://weather.com/weather/tenday/l/53.55,10.00"
+  },
+  {
+    "city": "Paris",
+    "country": "France",
+    "url": "https://weather.com/weather/tenday/l/48.86,2.35"
+  },
+  {
+    "city": "London",
+    "country": "United Kingdom",
+    "url": "https://weather.com/weather/tenday/l/51.51,-0.13"
+  },
+  {
+    "city": "Rome",
+    "country": "Italy",
+    "url": "https://weather.com/weather/tenday/l/41.90,12.49"
+  },
+  {
+    "city": "Athens",
+    "country": "Greece",
+    "url": "https://weather.com/weather/tenday/l/37.98,23.72"
+  }
+]
