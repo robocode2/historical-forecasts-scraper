@@ -18,6 +18,9 @@ SPIDER_MODULES = ["weatherscraper.spiders"]
 NEWSPIDER_MODULE = "weatherscraper.spiders"
 LOG_LEVEL = 'ERROR'
 
+# Add Your ScrapeOps API Key
+SCRAPEOPS_API_KEY= 'dbfe6e2a-857c-48ab-b04f-9c013eccbc4e'
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = "weatherscraper (+http://www.yourdomain.com)"
 
@@ -57,6 +60,8 @@ ROBOTSTXT_OBEY = True
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
     'scrapy_selenium.SeleniumMiddleware': 800,
+    'scrapeops_scrapy.middleware.retry.RetryMiddleware': 900,
+    
 }
 
 SELENIUM_DRIVER_NAME = 'chrome'
@@ -71,6 +76,10 @@ ROBOTSTXT_OBEY = True
 #    "scrapy.extensions.telnet.TelnetConsole": None,
 #}
 
+EXTENSIONS = {
+        'scrapeops_scrapy.extension.ScrapeOpsMonitor': 500, 
+        }
+
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
@@ -79,7 +88,6 @@ ITEM_PIPELINES = {
 
 }
 DATABASE_URL = os.getenv('DEV_DATABASE_URL')
-
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
