@@ -4,10 +4,16 @@ from datetime import datetime
 import time
 import os
 from scrapy_selenium import SeleniumRequest
+from selenium import webdriver
 from weatherscraper.items import DayForecastItem
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from shutil import which
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
 
 class TheWeatherChannelSpider(scrapy.Spider):
     name = "TheWeatherChannel"
@@ -25,18 +31,28 @@ class TheWeatherChannelSpider(scrapy.Spider):
                 self.locations = json.load(file)
         except FileNotFoundError:
             self.logger.error("locations.json file not found. Please make sure it exists and contains valid data.")
-
+    
     def start_requests(self):
-        # Iterate over each location
         for location in self.locations:
             url = location.get('url') + '?unit=m'
             yield SeleniumRequest(url=url, callback=self.parse, wait_time=10)
 
     def parse(self, response):
-        driver = response.request.meta['driver']
+        
+         # Initialize Chrome driver
+        chrome_options = Options()
+        chrome_options.add_argument("--headless")
+        chrome_options.add_argument("--no-sandbox")
+        chrome_options.add_argument("--disable-gpu")
+        chrome_options.add_argument("--disable-dev-shm-usage")
+        
+        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
+        
+        try:
+            # Use the driver to interact with the page
+            driver.get(response.url)
         
         # Switch to the cookie consent iframe and click the "Accept all" button
-        try:
             WebDriverWait(driver, 10).until(
                 EC.frame_to_be_available_and_switch_to_it((By.CSS_SELECTOR, 'iframe#sp_message_iframe_1100073'))
             )
@@ -85,3 +101,4 @@ class TheWeatherChannelSpider(scrapy.Spider):
             item['precipitation'] = day.css('div.DetailsSummary--precip--1a98O span::text').get()
             item['wind'] = day.css('span[data-testid="Wind"] span:nth-child(2)::text').extract_first()
             yield item
+            driver.quit()  # Ensure the driver is properly closed to release resources
