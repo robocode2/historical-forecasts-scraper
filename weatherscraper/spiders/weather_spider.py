@@ -100,5 +100,6 @@ class TheWeatherChannelSpider(scrapy.Spider):
             item['temp_low'] = day.css('span.DetailsSummary--lowTempValue--2tesQ::text').get()
             item['precipitation'] = day.css('div.DetailsSummary--precip--1a98O span::text').get()
             item['wind'] = day.css('span[data-testid="Wind"] span:nth-child(2)::text').extract_first()
+            item['source'] = 'TheWeatherChannel'
             yield item
             driver.quit()  # Ensure the driver is properly closed to release resources

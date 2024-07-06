@@ -90,6 +90,7 @@ class MeteoblueSpider(scrapy.Spider):
                 temp_high=columns[i][2] if len(columns[i]) > 2 else '',
                 temp_low=columns[i][3] if len(columns[i]) > 3 else '',
                 precipitation=columns[i][4] if len(columns[i]) > 4 else '',
-                wind='-'  # wind information is not available in the table
+                wind='-',  # wind information is not available in the table,
+                source='MeteoBlue'
             )
             yield item
