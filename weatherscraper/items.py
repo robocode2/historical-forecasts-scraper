@@ -17,5 +17,6 @@ class DayForecastItem(scrapy.Item):
    temp_low = scrapy.Field()
    precipitation = scrapy.Field()
    wind = scrapy.Field()
+   source = scrapy.Field()
 pass
 
