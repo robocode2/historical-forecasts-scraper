@@ -2,21 +2,23 @@ FROM python:3.10
 
 WORKDIR /scrapyApp
 
+# Copy your application code
 COPY . /scrapyApp
+
+# Install Python dependencies
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
+# Install Google Chrome (if needed)
+RUN wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
+    dpkg -i google-chrome-stable_current_amd64.deb || true && \
+    apt-get update && apt-get -f install -y && \
+    echo "Chrome: " && google-chrome --version
 
-RUN wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+# Install Scrapyd
+RUN pip install scrapyd
 
-RUN dpkg -i google-chrome-stable_current_amd64.deb; exit 0
+# Expose Scrapyd port
+EXPOSE 6800
 
-RUN apt-get update
-
-RUN apt --fix-broken install -y
-
-RUN echo "Chrome: " && google-chrome --version
-
-ENV PATH="/scrapyApp:${PATH}"
-
-CMD ["scrapy", "crawl", "TheWeatherChannel"]
-
+# Start Scrapyd
+CMD ["scrapyd"]
