@@ -93,9 +93,9 @@ SELENIUM_DRIVER_EXECUTABLE_PATH = CHROMEDRIVER_PATH
 SELENIUM_DRIVER_ARGUMENTS=['-headless', "--no-sandbox", "--disable-gpu", "--disable-dev-shm-usage"]
 SELENIUM_BROWSER_EXECUTABLE_PATH = os.environ.get("FIREFOX_BIN", "geckodriver")
  """
-SELENIUM_DRIVER_NAME = 'chrome'
+""" SELENIUM_DRIVER_NAME = 'chrome'
 SELENIUM_DRIVER_EXECUTABLE_PATH = which("chromedriver")
-SELENIUM_DRIVER_ARGUMENTS = [] 
+SELENIUM_DRIVER_ARGUMENTS = []  """
 # Other Scrapy settings
 ROBOTSTXT_OBEY = True
 

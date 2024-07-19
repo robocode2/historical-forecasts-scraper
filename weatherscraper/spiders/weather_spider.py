@@ -14,6 +14,13 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
+import logging
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.firefox.service import Service as FirefoxService
+from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.firefox import GeckoDriverManager
+import shutil
 
 class TheWeatherChannelSpider(scrapy.Spider):
     name = "TheWeatherChannel"
@@ -32,6 +39,29 @@ class TheWeatherChannelSpider(scrapy.Spider):
         except FileNotFoundError:
             self.logger.error("locations.json file not found. Please make sure it exists and contains valid data.")
     
+    def get_browser(self):
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--no-sandbox')
+        chrome_options.add_argument('--disable-dev-shm-usage')
+
+        firefox_options = webdriver.FirefoxOptions()
+        firefox_options.add_argument('-headless')
+
+        browser = None
+
+        try:
+            if shutil.which("firefox"):
+                logging.info("Using Firefox")
+                browser = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()), options=firefox_options)
+            else:
+                logging.error("No compatible browser installation found")
+        except Exception as e:
+            logging.error("Error initializing the browser: %s", e)
+        
+        return browser
+
+    
     def start_requests(self):
         for location in self.locations:
             url = location.get('url') + '?unit=m'
@@ -40,14 +70,13 @@ class TheWeatherChannelSpider(scrapy.Spider):
     def parse(self, response):
         
          # Initialize Chrome driver
-        chrome_options = Options()
-        chrome_options.add_argument("--headless")
-        chrome_options.add_argument("--no-sandbox")
-        chrome_options.add_argument("--disable-gpu")
-        chrome_options.add_argument("--disable-dev-shm-usage")
+
         
-        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
+        driver = self.get_browser()    
         
+        if driver is None:
+            self.logger.error("Failed to initialize the browser. Skipping this request.")
+            return    
         try:
             # Use the driver to interact with the page
             driver.get(response.url)
