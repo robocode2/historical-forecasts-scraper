@@ -29,27 +29,8 @@ class MeteoprogSpider(scrapy.Spider):
             yield SeleniumRequest(url=url, callback=self.parse, wait_time=10)
 
     def parse(self, response):
-        driver = response.meta['driver']
-        """   # Initialize Chrome driver
-        chrome_options = Options()
-        chrome_options.add_argument("--headless")
-        chrome_options.add_argument("--no-sandbox")
-        chrome_options.add_argument("--disable-gpu")
-        chrome_options.add_argument("--disable-dev-shm-usage")
-        
-        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options) """
-        
-        try:
-            # Attempt to find and click the accept cookies button
-            accept_button = WebDriverWait(driver, 10).until(
-                EC.element_to_be_clickable((By.XPATH, '/html/body/div[10]//div/div[2]/button[2]'))            )
-            accept_button.click()
-        except Exception as e:
-            print(f"Failed to find and click the accept button: {e}")
-            
-            
-        
-        # Initialize variables to store data        
+        # Initialize variables to store data 
+             
         city = ''
         h1_text = response.xpath('//h1/text()').get()
         if h1_text:
@@ -57,20 +38,9 @@ class MeteoprogSpider(scrapy.Spider):
             self.log(f"The last word is: {city}")
         
         # Initialize lists for collected data
-        temp_high = []
-        temp_low = []
         wind_speed = []
         precipitation = []
 
-        # Extract temperature high
-        temp_high_elements = response.css('text.column_textMax::text').getall()
-        temp_high = [temp.strip() for temp in temp_high_elements]
-        print(temp_high)
-
-        # Extract temperature low
-        temp_low_elements = response.css('text.column_textMin::text').getall()
-        temp_low = [temp.strip() for temp in temp_low_elements]
-        print(temp_low)
 
 
         # Extract wind speed
@@ -84,18 +54,30 @@ class MeteoprogSpider(scrapy.Spider):
         precipitation = [precip.strip() for precip in precipitation_elements]
         
         print(precipitation)
+        
+        forecast_days = response.xpath('//div[contains(@class, "swiper-slide")]')
+
+        temp_max = []
+        temp_min = []
+
+        for day in forecast_days:
+            max_temp = day.xpath('.//div[contains(@class, "temperature-max")]/h6/text()').get()
+            min_temp = day.xpath('.//div[contains(@class, "temperature-min")]/h6/text()').get()
+
+            temp_max.append(max_temp.strip().replace('°', '').replace('+', '').replace('C', '') if max_temp else '')
+            temp_min.append(min_temp.strip().replace('°', '').replace('+', '').replace('C', '') if min_temp else '')
+
+        print(temp_max, temp_max)
 
         # Create items from the collected data
         for i in range(14):
             item = DayForecastItem(
-                country='', #I could save it in the locations link. I have specified locations anyway, there should be no confusion with country and state. I could even delete them.
-                state='',
+                country='Germany', #I could save it in the locations link. I have specified locations anyway, there should be no confusion with country and state. I could even delete them.
+                state='Land Berlin',
                 city=city,
                 weather_condition='',                
-                temp_high=temp_high[i] if i < len(temp_high) else '',
-                temp_low=temp_low[i] if i < len(temp_low) else '',
+                temp_high=temp_max[i].replace('°', '').replace('+', '') if i < len(temp_max) else '', #this is wrong
+                temp_low=temp_min[i].replace('°', '').replace('+', '') if i < len(temp_min) else '',
                 precipitation=precipitation[i] if i < len(precipitation) else '',
-                wind=wind_speed[i] if i < len(wind_speed) else '',
-                source='MeteoProg'
-            )
+                wind=wind_speed[i] if i < len(wind_speed) else ''            )
             yield item

@@ -114,6 +114,7 @@ EXTENSIONS = {
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
     'weatherscraper.pipelines.WeatherPipeline': 100,
+    'weatherscraper.pipelines.PostgreSQLPipeline': 200,
 
 }
 DATABASE_URL = os.getenv('PROD_DATABASE_URL')

@@ -14,13 +14,6 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
-import logging
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service as ChromeService
-from selenium.webdriver.firefox.service import Service as FirefoxService
-from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.firefox import GeckoDriverManager
-import shutil
 
 class TheWeatherChannelSpider(scrapy.Spider):
     name = "TheWeatherChannel"
@@ -39,68 +32,12 @@ class TheWeatherChannelSpider(scrapy.Spider):
         except FileNotFoundError:
             self.logger.error("locations.json file not found. Please make sure it exists and contains valid data.")
     
-    def get_browser(self):
-        chrome_options = webdriver.ChromeOptions()
-        chrome_options.add_argument('--headless')
-        chrome_options.add_argument('--no-sandbox')
-        chrome_options.add_argument('--disable-dev-shm-usage')
-
-        firefox_options = webdriver.FirefoxOptions()
-        firefox_options.add_argument('-headless')
-
-        browser = None
-
-        try:
-            if shutil.which("firefox"):
-                logging.info("Using Firefox")
-                browser = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()), options=firefox_options)
-            else:
-                logging.error("No compatible browser installation found")
-        except Exception as e:
-            logging.error("Error initializing the browser: %s", e)
-        
-        return browser
-
-    
     def start_requests(self):
         for location in self.locations:
             url = location.get('url') + '?unit=m'
             yield SeleniumRequest(url=url, callback=self.parse, wait_time=10)
 
-    def parse(self, response):
-        
-         # Initialize Chrome driver
-
-        
-        driver = self.get_browser()    
-        
-        if driver is None:
-            self.logger.error("Failed to initialize the browser. Skipping this request.")
-            return    
-        try:
-            # Use the driver to interact with the page
-            driver.get(response.url)
-        
-        # Switch to the cookie consent iframe and click the "Accept all" button
-            WebDriverWait(driver, 10).until(
-                EC.frame_to_be_available_and_switch_to_it((By.CSS_SELECTOR, 'iframe#sp_message_iframe_1100073'))
-            )
-            WebDriverWait(driver, 10).until(
-                EC.element_to_be_clickable((By.CSS_SELECTOR, 'button[title="Accept all"]'))
-            ).click()
-            print("Successfully accepted cookies")
-            # Allow time for the page to reload after accepting cookies
-            time.sleep(3)
-        except Exception as e:
-            print("Could not accept cookies:", e)
-        finally:
-            driver.switch_to.default_content()
-
-        # Ensure the page has reloaded
-        WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, 'summary.Disclosure--Summary--3GiL4'))
-        )
-        
+    def parse(self, response):        
         # Scrape the location
         location = response.css('span.LocationPageTitle--PresentationName--1AMA6::text').get()
         city, state, country = None, None, None
@@ -129,6 +66,4 @@ class TheWeatherChannelSpider(scrapy.Spider):
             item['temp_low'] = day.css('span.DetailsSummary--lowTempValue--2tesQ::text').get()
             item['precipitation'] = day.css('div.DetailsSummary--precip--1a98O span::text').get()
             item['wind'] = day.css('span[data-testid="Wind"] span:nth-child(2)::text').extract_first()
-            item['source'] = 'TheWeatherChannel'
             yield item
-            driver.quit()  # Ensure the driver is properly closed to release resources

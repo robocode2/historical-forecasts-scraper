@@ -29,28 +29,8 @@ class MeteoblueSpider(scrapy.Spider):
             yield SeleniumRequest(url=url, callback=self.parse, wait_time=10)
 
     def parse(self, response):
-        driver = response.meta['driver']
-        """   # Initialize Chrome driver
-        chrome_options = Options()
-        chrome_options.add_argument("--headless")
-        chrome_options.add_argument("--no-sandbox")
-        chrome_options.add_argument("--disable-gpu")
-        chrome_options.add_argument("--disable-dev-shm-usage")
-        
-        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options) """
-        
-        try:
-            # Attempt to find and click the accept cookies button
-            accept_button = WebDriverWait(driver, 10).until(
-                EC.element_to_be_clickable((By.XPATH, '/html/body/div[10]/div[2]/div[1]/div[2]/div[2]/button[1]'))            )
-            accept_button.click()
-        except Exception as e:
-            print(f"Failed to find and click the accept button: {e}")
+          # Initialize Chrome driver
 
-        # Wait for the page to load the main content
-        WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, 'table.forecast-table'))
-        )
         
         rows = response.css('table.forecast-table tr')
         
@@ -87,10 +67,10 @@ class MeteoblueSpider(scrapy.Spider):
                 state=state,
                 city=city,
                 weather_condition=weather_conditions[i][0] if i < len(weather_conditions) else '',                
-                temp_high=columns[i][2] if len(columns[i]) > 2 else '',
-                temp_low=columns[i][3] if len(columns[i]) > 3 else '',
+                temp_high=columns[i][2].replace('°', '') if len(columns[i]) > 2 else '',
+                temp_low=columns[i][3].replace('°', '') if len(columns[i]) > 3 else '',
                 precipitation=columns[i][4] if len(columns[i]) > 4 else '',
-                wind='-',  # wind information is not available in the table,
-                source='MeteoBlue'
+                wind=0
+                #source='MeteoBlue'
             )
             yield item

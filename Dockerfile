@@ -5,6 +5,9 @@ WORKDIR /scrapyApp
 # Copy your application code
 COPY . /scrapyApp
 
+# Copy Scrapyd configuration
+COPY scrapyd.conf /etc/scrapyd/scrapyd.conf
+
 # Install Python dependencies
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
 

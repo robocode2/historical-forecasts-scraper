@@ -4,6 +4,11 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from weatherscraper.items import DayForecastItem
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
+
 
 class TimeAndDateSpider(scrapy.Spider):
     name = "TimeAndDate"
@@ -16,7 +21,15 @@ class TimeAndDateSpider(scrapy.Spider):
             yield SeleniumRequest(url=url, callback=self.parse, wait_time=10)
 
     def parse(self, response):
-        driver = response.meta['driver']
+        #driver = response.meta['driver']
+          # Initialize Chrome driver
+        chrome_options = Options()
+        chrome_options.add_argument('--headless')
+        chrome_options.add_argument("--no-sandbox")
+        chrome_options.add_argument("--disable-gpu")
+        chrome_options.add_argument("--disable-dev-shm-usage")
+        
+        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
         
         # Handle cookies acceptance
         try:
@@ -26,11 +39,6 @@ class TimeAndDateSpider(scrapy.Spider):
             accept_button.click()
         except Exception as e:
             self.logger.info(f"Failed to find and click the accept button: {e}")
-
-        # Wait for the table to be present
-        WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, '#wt-ext > tbody'))
-        )
 
         # Extract data from the table
         table_rows = response.css('#wt-ext > tbody > tr')
@@ -65,6 +73,5 @@ class TimeAndDateSpider(scrapy.Spider):
                 wind=wind_speed,
                 precipitation=precipitation,
                 weather_condition=weather_condition,
-                source='TimeAndDate'
             )
             yield item
