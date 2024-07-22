@@ -76,8 +76,9 @@ class MeteoprogSpider(scrapy.Spider):
                 state='Land Berlin',
                 city=city,
                 weather_condition='',                
-                temp_high=temp_max[i].replace('°', '').replace('+', '') if i < len(temp_max) else '', #this is wrong
-                temp_low=temp_min[i].replace('°', '').replace('+', '') if i < len(temp_min) else '',
+                temp_high=temp_max[i] if i < len(temp_max) else '', #this is wrong
+                temp_low=temp_min[i] if i < len(temp_min) else '',
                 precipitation=precipitation[i] if i < len(precipitation) else '',
-                wind=wind_speed[i] if i < len(wind_speed) else ''            )
+                wind=wind_speed[i] if i < len(wind_speed) else '',
+                source='MeteoProg')
             yield item

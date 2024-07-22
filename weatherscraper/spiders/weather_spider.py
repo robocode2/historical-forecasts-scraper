@@ -64,6 +64,7 @@ class TheWeatherChannelSpider(scrapy.Spider):
             item['weather_condition'] = day.css('div.DetailsSummary--condition--2JmHb span::text').get()
             item['temp_high'] = day.css('span.DetailsSummary--highTempValue--3PjlX::text').get()
             item['temp_low'] = day.css('span.DetailsSummary--lowTempValue--2tesQ::text').get()
-            item['precipitation'] = day.css('div.DetailsSummary--precip--1a98O span::text').get()
+            item['precipitation'] = day.css('div.DetailsSummary--precip--1a98O span::text').get().replace('%', '')
             item['wind'] = day.css('span[data-testid="Wind"] span:nth-child(2)::text').extract_first()
+            item['source'] = 'TheWeatherChannel'
             yield item

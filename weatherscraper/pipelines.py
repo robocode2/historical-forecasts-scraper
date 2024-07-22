@@ -16,7 +16,7 @@ class WeatherPipeline:
         city = item['city']
         
         # Remove White Space in Weather Condition
-        item['weather_condition'] = item['weather_condition'].lower().replace(' ', '_')
+        #item['weather_condition'] = item['weather_condition'].lower().replace(' ', '_')
 
         # Get the current date
         current_date = datetime.now().strftime('%Y-%m-%d')
@@ -51,7 +51,8 @@ from .settings import DATABASE_URL
 
 class PostgreSQLPipeline:
    def open_spider(self, spider):
-        self.connection = psycopg2.connect(DATABASE_URL)
+        self.connection = psycopg2.connect(
+        )
         self.cursor = self.connection.cursor()
 
    def close_spider(self, spider):
@@ -59,7 +60,6 @@ class PostgreSQLPipeline:
         self.connection.close()
  
    def process_item(self, item, spider):
-        if spider.name == 'TheWeatherChannel':
             try:
                 # Insert City if not exists
                 self.cursor.execute("""
@@ -97,11 +97,27 @@ class PostgreSQLPipeline:
                     country_id = self.cursor.fetchone()[0]  # Assuming the country exists, fetch its id
 
 
+                 # Insert City if not exists
+                self.cursor.execute("""
+                    INSERT INTO Source (name)
+                    SELECT %s
+                    WHERE NOT EXISTS (SELECT 1 FROM Source WHERE name = %s)
+                    RETURNING id
+                """, (item['source'], item['source']))
+    
+                source_result = self.cursor.fetchone()
+
+                if source_result:
+                    source_id = source_result[0]
+                else:
+                    # Fetch source if it already exists
+                    self.cursor.execute("SELECT id FROM Source WHERE name = %s", (item['source'],))
+                    source_id = self.cursor.fetchone()[0]  # Assuming the city exists, fetch its id
 
                 # Insert Forecast
                 self.cursor.execute("""
-                    INSERT INTO Forecast (city_id, country_id, date, day, precipitation, state, temp_high, temp_low, weather_condition, wind)
-                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                    INSERT INTO Forecast (city_id, country_id, date, day, precipitation, state, temp_high, temp_low, weather_condition, wind, source_id)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                 """, (
                     city_id,
                     country_id,
@@ -112,16 +128,17 @@ class PostgreSQLPipeline:
                     item['temp_high'],
                     item['temp_low'],
                     item['weather_condition'],
-                    item['wind']
+                    item['wind'],
+                    source_id
                 ))
                 self.connection.commit()
             except psycopg2.Error as e:
                 self.connection.rollback()
                 raise DropItem(f"Error processing item: {e}")
             return item
-        else:
-            return item
             
             
+
+    
 
     

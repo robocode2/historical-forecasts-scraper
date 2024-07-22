@@ -69,8 +69,8 @@ class MeteoblueSpider(scrapy.Spider):
                 weather_condition=weather_conditions[i][0] if i < len(weather_conditions) else '',                
                 temp_high=columns[i][2].replace('°', '') if len(columns[i]) > 2 else '',
                 temp_low=columns[i][3].replace('°', '') if len(columns[i]) > 3 else '',
-                precipitation=columns[i][4] if len(columns[i]) > 4 else '',
-                wind=0
-                #source='MeteoBlue'
+                precipitation=columns[i][4].replace('%', '') if len(columns[i]) > 4 else '',
+                wind=None,
+                source='MeteoBlue'
             )
             yield item

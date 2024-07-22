@@ -61,8 +61,8 @@ class AccuWeatherSpider(scrapy.Spider):
             # Extract precipitation
             precip_div = wrapper.xpath('.//div[contains(@class, "precip")]')
             # Extract the text content after the SVG
-            precipitation_percentage = precip_div.xpath('./text()[normalize-space()]').get().strip() if precip_div else 'N/A'
-            precipitation_percentage = precipitation_percentage.replace('%', '') if precipitation_percentage != 'N/A' else 'N/A'
+            precipitation_percentage = precip_div.xpath('./text()[normalize-space()]').get().strip() if precip_div else None
+            precipitation_percentage = precipitation_percentage.replace('%', '') if precipitation_percentage != None else None #tests due
             
             # Extract weather condition
             weather_condition = wrapper.css('div.phrase::text').get().strip()
@@ -71,9 +71,9 @@ class AccuWeatherSpider(scrapy.Spider):
             wind_text = wrapper.css('div.panels div.right p:nth-child(2) span.value::text').get()
             if wind_text:
                 wind_speed_match = re.search(r'\b(\d+)\b', wind_text)
-                wind_speed = int(wind_speed_match.group(1)) if wind_speed_match else 0
+                wind_speed = int(wind_speed_match.group(1)) if wind_speed_match else None
             else:
-                wind_speed = 0
+                wind_speed = None
                 
             # Create and yield the item
             item = DayForecastItem(
@@ -84,6 +84,7 @@ class AccuWeatherSpider(scrapy.Spider):
                 temp_low=temp_low,
                 precipitation=precipitation_percentage,
                 weather_condition=weather_condition,
-                wind=wind_speed
+                wind=wind_speed,
+                source='AccuWeather'
             )
             yield item

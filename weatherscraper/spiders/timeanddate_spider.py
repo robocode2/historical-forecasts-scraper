@@ -73,5 +73,6 @@ class TimeAndDateSpider(scrapy.Spider):
                 wind=wind_speed,
                 precipitation=precipitation,
                 weather_condition=weather_condition,
+                source="TimeAndDate"
             )
             yield item
