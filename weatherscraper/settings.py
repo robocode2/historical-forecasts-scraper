@@ -67,32 +67,6 @@ DOWNLOADER_MIDDLEWARES = {
 }
 
 
-
-#SELENIUM_DRIVER_NAME = 'chrome'
-#SELENIUM_DRIVER_EXECUTABLE_PATH = which("chromedriver")
-#SELENIUM_DRIVER_ARGUMENTS=['-headless', "--no-sandbox", "--disable-gpu", "--disable-dev-shm-usage"]
-
-# Function to configure Selenium
-""" def configure_selenium():
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--disable-gpu")
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_service = ChromeService(ChromeDriverManager().install())
-    return webdriver.Chrome(service=chrome_service, options=chrome_options)
- """
-""" SELENIUM_DRIVER_NAME = 'firefox'
-SELENIUM_DRIVER_EXECUTABLE_PATH = '/root/weatherScraper/weatherscraper/weatherscraper/geckodriver'
-SELENIUM_DRIVER_ARGUMENTS=[]
- """
-  
-""" CHROMEDRIVER_PATH = '/root/weatherScraper/weatherscraper/weatherscraper/spiders/geckodriver'
-SELENIUM_DRIVER_NAME = 'firefox'
-SELENIUM_DRIVER_EXECUTABLE_PATH = CHROMEDRIVER_PATH 
-SELENIUM_DRIVER_ARGUMENTS=['-headless', "--no-sandbox", "--disable-gpu", "--disable-dev-shm-usage"]
-SELENIUM_BROWSER_EXECUTABLE_PATH = os.environ.get("FIREFOX_BIN", "geckodriver")
- """
 """ SELENIUM_DRIVER_NAME = 'chrome'
 SELENIUM_DRIVER_EXECUTABLE_PATH = which("chromedriver")
 SELENIUM_DRIVER_ARGUMENTS = []  """
