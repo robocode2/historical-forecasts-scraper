@@ -2,7 +2,7 @@ import json
 import os
 
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.chrome.service import Service 
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 
@@ -28,12 +28,15 @@ def load_locations(section_name):
     
     return locations
 
-def initializeDriver():
+def initializeDriver(): #naaaaaming
     chrome_options = Options()
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-gpu")
     chrome_options.add_argument("--disable-dev-shm-usage")
     
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
+    # Initialize the WebDriver without specifying the executable path
+    service = Service()
+    driver = webdriver.Chrome(service=service, options=chrome_options)
+    
     return driver
