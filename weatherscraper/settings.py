@@ -20,14 +20,18 @@ LOG_LEVEL = 'ERROR'
 
 LOCATIONS_JSON_PATH = 'weatherScraper/locations.json'
 
-# Add Your ScrapeOps API Key
-SCRAPEOPS_API_KEY= 'dbfe6e2a-857c-48ab-b04f-9c013eccbc4e'
+SCRAPEOPS_API_KEY = os.getenv('SCRAPEOPS_API_KEY')
+
+SCRAPEOPS_PROXY_ENABLED = True
+
+
+SCRAPEOPS_NUM_RESULTS = 50
+
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = "weatherscraper (+http://www.yourdomain.com)"
 
-# Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -63,15 +67,17 @@ ROBOTSTXT_OBEY = True
 DOWNLOADER_MIDDLEWARES = {
     'scrapy_selenium.SeleniumMiddleware': 800,
     'scrapeops_scrapy.middleware.retry.RetryMiddleware': 900,
-    
+    'scrapeops_scrapy_proxy_sdk.scrapeops_scrapy_proxy_sdk.ScrapeOpsScrapyProxySdk': 725,
+    'weatherscraper.middlewares.ScrapeOpsFakeBrowserHeaderAgentMiddleware': 400,
 }
+
+# Other Scrapy settings
+ROBOTSTXT_OBEY = False
 
 
 """ SELENIUM_DRIVER_NAME = 'chrome'
 SELENIUM_DRIVER_EXECUTABLE_PATH = which("chromedriver")
 SELENIUM_DRIVER_ARGUMENTS = []  """
-# Other Scrapy settings
-ROBOTSTXT_OBEY = True
 
 
 # Enable or disable extensions
