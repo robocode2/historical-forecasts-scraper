@@ -1,18 +1,10 @@
 import json
 import os
-
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service 
 from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
 
 def load_locations(section_name):
-    """
-    Load locations from a JSON file based on the given section name.
-    
-    :param section_name: The section name to extract from the JSON file.
-    :return: A list of locations if found, otherwise an empty list.
-    """
     locations = []
     try:
         current_dir = os.path.dirname(os.path.realpath(__file__))

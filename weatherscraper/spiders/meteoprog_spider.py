@@ -32,8 +32,7 @@ class MeteoprogSpider(scrapy.Spider):
 
         precipitation_elements = response.css('#weather-temp-graph-week > div > div > div.item-table > ul:nth-child(4) > li > span:first-child::text').getall()
         precipitation = [precip.strip() for precip in precipitation_elements]
-                
-                
+        
         forecast_days = response.xpath('//div[contains(@class, "swiper-slide")]')
         temp_max = []
         temp_min = []
@@ -51,9 +50,9 @@ class MeteoprogSpider(scrapy.Spider):
                 state=state,
                 city=city,
                 weather_condition='',                
-                temp_high=temp_max[i] if i < len(temp_max) else '', #this is wrong
-                temp_low=temp_min[i] if i < len(temp_min) else '',
-                precipitation=precipitation[i] if i < len(precipitation) else '',
-                wind=wind_speed[i] if i < len(wind_speed) else '',
+                temp_high=temp_max[i] if i < len(temp_max) else None, 
+                temp_low=temp_min[i] if i < len(temp_min) else None,
+                precipitation=precipitation[i] if i < len(precipitation) else None,
+                wind=float(wind_speed[i])*3.6 if i < len(wind_speed) else None,
                 source='MeteoProg')
             yield item

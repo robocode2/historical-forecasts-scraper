@@ -22,7 +22,6 @@ class AccuWeatherSpider(scrapy.Spider):
             meta = {'city': location.get('city'), 'country': location.get('country'), 'state': location.get('state')}
             yield SeleniumRequest(url=url, callback=self.parse, wait_time=10, meta=meta)
 
-
     def parse(self, response):
         driver = initializeDriver()
 
@@ -40,7 +39,7 @@ class AccuWeatherSpider(scrapy.Spider):
         if state == '':
            state = None
         
-        daily_wrappers = response.css('div.page-column-1 div.daily-wrapper')
+        daily_wrappers = response.css('div.page-column-1 div.daily-wrapper')[:14]
 
         for wrapper in daily_wrappers:
             temp_high = wrapper.css('a div.info span.high::text').get().strip().replace('°', '')
@@ -51,7 +50,7 @@ class AccuWeatherSpider(scrapy.Spider):
             
             # Extract the text content after the SVG
             precipitation_percentage = precip_div.xpath('./text()[normalize-space()]').get().strip() if precip_div else None
-            precipitation_percentage = precipitation_percentage.replace('%', '') if precipitation_percentage != None else None #tests due
+            precipitation_percentage = precipitation_percentage.replace('%', '') if precipitation_percentage != None else None # TODOX tests due
             
             weather_condition = wrapper.css('div.phrase::text').get().strip()
 

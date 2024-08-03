@@ -47,10 +47,10 @@ class MeteoblueSpider(scrapy.Spider):
                 country=country,
                 state=state,
                 city=city,
-                weather_condition=weather_conditions[i][0] if i < len(weather_conditions) else '',                
-                temp_high=columns[i][2].replace('°', '') if len(columns[i]) > 2 else '',
-                temp_low=columns[i][3].replace('°', '') if len(columns[i]) > 3 else '',
-                precipitation=columns[i][4].replace('%', '') if len(columns[i]) > 4 else '',
+                weather_condition=weather_conditions[i][0] if i < len(weather_conditions) else None,                
+                temp_high=columns[i][2].replace('°', '') if len(columns[i]) > 2 else None,
+                temp_low=columns[i][3].replace('°', '') if len(columns[i]) > 3 else None,
+                precipitation=columns[i][4].replace('%', '') if len(columns[i]) > 4 else None,
                 wind=None,
                 source='MeteoBlue'
             )
