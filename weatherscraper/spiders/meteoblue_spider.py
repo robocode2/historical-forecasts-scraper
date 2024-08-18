@@ -2,6 +2,7 @@ import scrapy
 from scrapy_selenium import SeleniumRequest
 from weatherscraper.items import DayForecastItem
 from weatherscraper.utils import load_locations
+import json
 
 class MeteoblueSpider(scrapy.Spider):
     name = "MeteoBlue"
@@ -41,6 +42,12 @@ class MeteoblueSpider(scrapy.Spider):
                 title = img.xpath('@title').get()
                 weather_conditions[i].append(title.strip() if title else '')
 
+        precipitation_data_str = response.xpath('//*[@id="canvas_14_days_forecast_precipitations"]/@data-precipitation').get()
+        try:
+            precipitation_data = json.loads(precipitation_data_str) if precipitation_data_str else [None] * 14
+        except json.JSONDecodeError:
+            self.logger.error(f"Failed to parse precipitation data: {precipitation_data_str}")
+            precipitation_data = [None] * 14
 
         for i in range(14):
             item = DayForecastItem(
@@ -50,8 +57,10 @@ class MeteoblueSpider(scrapy.Spider):
                 weather_condition=weather_conditions[i][0] if i < len(weather_conditions) else None,                
                 temp_high=columns[i][2].replace('°', '') if len(columns[i]) > 2 else None,
                 temp_low=columns[i][3].replace('°', '') if len(columns[i]) > 3 else None,
-                precipitation=columns[i][4].replace('%', '') if len(columns[i]) > 4 else None,
-                wind=None,
-                source='MeteoBlue'
+                precipitation_chance=columns[i][4].replace('%', '') if len(columns[i]) > 4 else None,
+                precipitation_amount=precipitation_data[i] if i < len(precipitation_data) else None,
+                wind_speed=None,
+                humidity= None,
+                source='MeteoBlue',
             )
             yield item

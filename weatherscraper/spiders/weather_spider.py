@@ -25,11 +25,14 @@ class TheWeatherChannelSpider(scrapy.Spider):
         if state == '':
             state = None
         
-        skip_first_five_counter = 0
-        for day in response.css('summary.Disclosure--Summary--3GiL4'):
-            skip_first_five_counter += 1
-            if skip_first_five_counter <= 5:
-                continue
+
+        for i in range(15):
+            day_selector = f'//*[@id="detailIndex{i}"]/div/div[2]/ul/li[1]/div/span[2]'
+            humidity = response.xpath(day_selector + '/text()').get()
+            if humidity:
+                humidity = humidity.replace('%', '').strip()
+
+            day = response.xpath(f'//*[@id="detailIndex{i}"]')
 
             item = DayForecastItem()
             item['country'] = country
@@ -40,7 +43,8 @@ class TheWeatherChannelSpider(scrapy.Spider):
             item['weather_condition'] = day.css('div.DetailsSummary--condition--2JmHb span::text').get()
             item['temp_high'] = day.css('span.DetailsSummary--highTempValue--3PjlX::text').get()
             item['temp_low'] = day.css('span.DetailsSummary--lowTempValue--2tesQ::text').get()
-            item['precipitation'] = day.css('div.DetailsSummary--precip--1a98O span::text').get().replace('%', '')
-            item['wind'] = day.css('span[data-testid="Wind"] span:nth-child(2)::text').extract_first()
+            item['precipitation_chance'] = day.css('div.DetailsSummary--precip--1a98O span::text').get().replace('%', '')
+            item['wind_speed'] = day.css('span[data-testid="Wind"] span:nth-child(2)::text').extract_first()
+            item['humidity'] = humidity
             item['source'] = 'TheWeatherChannel'
             yield item
