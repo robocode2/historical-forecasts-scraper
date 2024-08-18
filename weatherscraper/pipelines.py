@@ -14,14 +14,7 @@ class WeatherPipeline:
 
     def process_item(self, item, spider):
         city = item['city']
-        
-        # Remove White Space in Weather Condition
-        #item['weather_condition'] = item['weather_condition'].lower().replace(' ', '_')
-
-        # Get the current date
         current_date = datetime.now().strftime('%Y-%m-%d')
-        
-        # Set the item's date to the current date
         item['date'] = current_date
         
         # Check if this is a new city or if the city hasn't been seen before
@@ -38,21 +31,13 @@ class WeatherPipeline:
         
         return item
         
-"""    commit this separately     # Check if item['date'] is equal to item['day']
-        if item['date'] == item['day']:
-            # Ignore setting the date
-            return
-        else:
-            return item """
-            
+
 import psycopg2
 from scrapy.exceptions import DropItem
-from .settings import DATABASE_URL
 
 class PostgreSQLPipeline:
    def open_spider(self, spider):
-        self.connection = psycopg2.connect(
-        )
+        self.connection = psycopg2.connect()
         self.cursor = self.connection.cursor()
 
    def close_spider(self, spider):
@@ -116,20 +101,22 @@ class PostgreSQLPipeline:
 
                 # Insert Forecast
                 self.cursor.execute("""
-                    INSERT INTO Forecast (city_id, country_id, date, day, precipitation, state, temp_high, temp_low, weather_condition, wind, source_id)
-                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                    INSERT INTO Forecast (source_id, city_id, country_id, state, date, day, precipitation_chance, precipitation_amount, temp_high, temp_low, wind_speed, humidity, weather_condition)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                 """, (
+                    source_id,
                     city_id,
                     country_id,
+                    item['state'],
                     item['date'],
                     item['day'],
-                    item['precipitation'],
-                    item['state'],
+                    item['precipitation_chance'],
+                    item['precipitation_amount'],
                     item['temp_high'],
                     item['temp_low'],
-                    item['weather_condition'],
-                    item['wind'],
-                    source_id
+                    item['wind_speed'],
+                    item['humidity'],
+                    item['weather_condition']
                 ))
                 self.connection.commit()
             except psycopg2.Error as e:

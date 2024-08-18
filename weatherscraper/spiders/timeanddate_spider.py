@@ -52,8 +52,6 @@ class TimeAndDateSpider(scrapy.Spider):
                 if '°F' in temp_low:
                     temp_low = self.convert_fahrenheit_to_celsius(temp_low.replace('°F', '').strip())
                 
-                temp_high, temp_low = temp_high.strip(), temp_low.strip()
-
 
             weather_condition = row.css('td.small::text').get()
 
@@ -61,7 +59,13 @@ class TimeAndDateSpider(scrapy.Spider):
             wind_speed = wind_speed_text.split()[0] if wind_speed_text else None  # Extract only the number
 
             precipitation = row.css('td:nth-child(9)::text').get()
+
             precipitation_amount = row.xpath(f'//*[@id="wt-ext"]/tbody/tr[{index + 1}]/td[9]/text()').get()
+            precipitation_amount = precipitation_amount.strip()
+            if precipitation_amount == '-':
+                precipitation_amount = None
+            else:
+                precipitation_amount = precipitation_amount.replace(' mm', '').strip()
 
             humidity = row.xpath(f'//*[@id="wt-ext"]/tbody/tr[{index + 1}]/td[7]/text()').get()
             if humidity:
@@ -75,7 +79,7 @@ class TimeAndDateSpider(scrapy.Spider):
                 temp_low=temp_low,
                 wind_speed=wind_speed,
                 precipitation_chance=precipitation.replace('%', ''),
-                precipitation_amount=precipitation_amount.replace(' mm', '').strip(),
+                precipitation_amount=precipitation_amount,
                 humidity=humidity,
                 weather_condition=weather_condition,
                 source="TimeAndDate"
@@ -86,7 +90,6 @@ class TimeAndDateSpider(scrapy.Spider):
         try:
             fahrenheit = float(fahrenheit)
             celsius = (fahrenheit - 32) * 5.0/9.0
-            print('converted')
             return celsius
         except ValueError:
             return None

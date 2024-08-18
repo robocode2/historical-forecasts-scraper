@@ -20,15 +20,23 @@ def load_locations(section_name):
     
     return locations
 
-def initializeDriver(): #naaaaaming
+def initialize_driver():
     chrome_options = Options()
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-gpu")
     chrome_options.add_argument("--disable-dev-shm-usage")
     
-    # Initialize the WebDriver without specifying the executable path
     service = Service()
     driver = webdriver.Chrome(service=service, options=chrome_options)
     
     return driver
+
+
+def save_response_html(self, response):
+    os.makedirs('responses', exist_ok=True)
+    file_path = 'responses/response.html'
+    with open(file_path, 'wb') as f:
+        f.write(response.body)
+
+    self.log(f'Saved response HTML to {file_path}')

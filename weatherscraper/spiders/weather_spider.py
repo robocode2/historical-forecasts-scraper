@@ -44,6 +44,7 @@ class TheWeatherChannelSpider(scrapy.Spider):
             item['temp_high'] = day.css('span.DetailsSummary--highTempValue--3PjlX::text').get()
             item['temp_low'] = day.css('span.DetailsSummary--lowTempValue--2tesQ::text').get()
             item['precipitation_chance'] = day.css('div.DetailsSummary--precip--1a98O span::text').get().replace('%', '')
+            item['precipitation_amount'] = None,
             item['wind_speed'] = day.css('span[data-testid="Wind"] span:nth-child(2)::text').extract_first()
             item['humidity'] = humidity
             item['source'] = 'TheWeatherChannel'
