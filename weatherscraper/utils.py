@@ -40,3 +40,13 @@ def save_response_html(self, response):
         f.write(response.body)
 
     self.log(f'Saved response HTML to {file_path}')
+    
+def fahrenheit_to_celsius(fahrenheit_temp):
+    return round((float(fahrenheit_temp) - 32) * 5/9) if fahrenheit_temp else None
+
+def inch_to_mm(inches):
+    return round(inches * 25.4, 1)
+
+
+def mph_to_kmh(mph):
+    return round(float(mph) * 1.60934, 2)

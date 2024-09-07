@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta, timezone
 import scrapy
 from scrapy_selenium import SeleniumRequest
 from weatherscraper.items import DayForecastItem
@@ -14,7 +15,6 @@ class MeteoprogSpider(scrapy.Spider):
     def start_requests(self):
         for location in self.locations:
             url = location.get('url')
-            print(url)
             meta = {'city': location.get('city'), 'country': location.get('country'), 'state': location.get('state')}
             yield SeleniumRequest(url=url, callback=self.parse, wait_time=10, meta=meta)
 
@@ -22,7 +22,8 @@ class MeteoprogSpider(scrapy.Spider):
         city = response.meta.get('city')
         country = response.meta.get('country')
         state = response.meta.get('state')
-                     
+        current_date = datetime.now(timezone.utc)
+          
         wind_speed = []
         humidity = []
         precipitation_amounts = []
@@ -49,7 +50,7 @@ class MeteoprogSpider(scrapy.Spider):
 
         precipitation_chance_elements = response.css('#weather-temp-graph-week > div > div > div.item-table > ul:nth-child(4) > li > span:first-child::text').getall()
         precipitation_chances = [precip.strip() for precip in precipitation_chance_elements]
-        precipitation_chances.extend(["None"] * (14 - len(precipitation_chances)))
+        precipitation_chances.extend([None] * (14 - len(precipitation_chances)))
 
         precipitation_amount_elements = response.xpath('//*[@id="weather-temp-graph-week"]/div/div/div[2]/ul[5]/li/span[1]/text()').getall()
         precipitation_amounts = [p.strip().replace(' mm', '') for p in precipitation_amount_elements]
@@ -58,7 +59,7 @@ class MeteoprogSpider(scrapy.Spider):
         forecast_days = response.xpath('//div[contains(@class, "swiper-slide")]')
         temp_max = []
         temp_min = []
-
+        
         for day in forecast_days:
             max_temp = day.xpath('.//div[contains(@class, "temperature-max")]/h6/text()').get()
             min_temp = day.xpath('.//div[contains(@class, "temperature-min")]/h6/text()').get()
@@ -78,8 +79,12 @@ class MeteoprogSpider(scrapy.Spider):
                 humidity=humidity[i] if i < len(humidity) else None,
                 wind_speed=float(wind_speed[i])*3.6 if i < len(wind_speed) and wind_speed[i] else None,
                 weather_condition=weather_descriptions[i],
-                source='MeteoProg'
+                source='MeteoProg',
+                date= current_date,
+                day= current_date + timedelta(days=i)
+                
             )
+            
             yield item
 
 
