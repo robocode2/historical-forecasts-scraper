@@ -105,6 +105,7 @@ class WeatherscraperDownloaderMiddleware:
 
 from urllib.parse import urlencode
 from random import randint
+import random
 import requests
 
 class ScrapeOpsFakeBrowserHeaderAgentMiddleware:
@@ -142,15 +143,37 @@ class ScrapeOpsFakeBrowserHeaderAgentMiddleware:
     
     def process_request(self, request, spider):        
         random_browser_header = self._get_random_browser_header()
+        
+        fallback_headers = {
+            'accept-language': 'en-US,en;q=0.9',
+            'sec-fetch-user': '?1',
+            'sec-fetch-mode': random.choice(['navigate', 'cors', 'no-cors']),
+            'sec-fetch-site': random.choice(['same-origin', 'cross-site', 'none']),
+            'sec-ch-ua-platform': random.choice(['Windows', 'Linux', 'macOS']),
+            'sec-ch-ua-mobile': random.choice(['?0', '?1']),
+            'sec-ch-ua': random.choice([
+                            '"Google Chrome";v="95", "Not A;Brand";v="99", "Chromium";v="95"',
+                            '"Mozilla";v="5.0", "Not A;Brand";v="99", "Chromium";v="95"',
+                            '"Microsoft Edge";v="94", "Chromium";v="94", "Not A;Brand";v="99"'
+                        ]),
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'user-agent': random.choice([
+                            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36',
+                            'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36',
+                            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Safari/605.1.15'
+                        ]),
+            'upgrade-insecure-requests': '1'
+        }
 
-        request.headers['accept-language'] = random_browser_header['accept-language']
-        request.headers['sec-fetch-user'] = random_browser_header['sec-fetch-user'] 
-        request.headers['sec-fetch-mod'] = random_browser_header['sec-fetch-mod'] 
-        request.headers['sec-fetch-site'] = random_browser_header['sec-fetch-site'] 
-        request.headers['sec-ch-ua-platform'] = random_browser_header['sec-ch-ua-platform'] 
-        request.headers['sec-ch-ua-mobile'] = random_browser_header['sec-ch-ua-mobile'] 
-        request.headers['sec-ch-ua'] = random_browser_header['sec-ch-ua'] 
-        request.headers['accept'] = random_browser_header['accept'] 
-        request.headers['user-agent'] = random_browser_header['user-agent'] 
-        request.headers['upgrade-insecure-requests'] = random_browser_header.get('upgrade-insecure-requests')
+        request.headers['accept-language'] = random_browser_header.get('accept-language', fallback_headers['accept-language'])
+        request.headers['sec-fetch-user'] = random_browser_header.get('sec-fetch-user', fallback_headers['sec-fetch-user']) 
+        request.headers['sec-fetch-mode'] = random_browser_header.get('sec-fetch-mode', fallback_headers['sec-fetch-mode']) 
+        request.headers['sec-fetch-site'] = random_browser_header.get('sec-fetch-site', fallback_headers['sec-fetch-site']) 
+        request.headers['sec-ch-ua-platform'] = random_browser_header.get('sec-ch-ua-platform', fallback_headers['sec-ch-ua-platform']) 
+        request.headers['sec-ch-ua-mobile'] = random_browser_header.get('sec-ch-ua-mobile', fallback_headers['sec-ch-ua-mobile']) 
+        request.headers['sec-ch-ua'] = random_browser_header.get('sec-ch-ua', fallback_headers['sec-ch-ua']) 
+        request.headers['accept'] = random_browser_header.get('accept', fallback_headers['accept']) 
+        request.headers['user-agent'] = random_browser_header.get('user-agent', fallback_headers['user-agent']) 
+        request.headers['upgrade-insecure-requests'] = random_browser_header.get('upgrade-insecure-requests', fallback_headers['upgrade-insecure-requests'])
+
     
