@@ -58,12 +58,12 @@ class MeteoblueSpider(scrapy.Spider):
         for i in range(14):
             temp_high = columns[i][2].replace('°', '') if len(columns[i]) > 2 else None
             temp_low = columns[i][3].replace('°', '') if len(columns[i]) > 3 else None
-            precipitation_amount=precipitation_data[i] if i < len(precipitation_data) else None,
+            precipitation_amount=precipitation_data[i] if i < len(precipitation_data) else None
 
             if temp_unit == '°F':
                 temp_high = fahrenheit_to_celsius(temp_high)
                 temp_low = fahrenheit_to_celsius(temp_low)
-                precipitation_amount= inch_to_mm(float(precipitation_amount[0]))
+                precipitation_amount= inch_to_mm(float(precipitation_amount))
                 
             item = DayForecastItem(
                 country=country,
