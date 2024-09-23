@@ -1,317 +1,372 @@
 {
-    "TheWeatherChannel": [
-      {
-        "city": "Berlin",
-        "state": "",
-        "country": "Germany",
-        "url": "https://weather.com/weather/tenday/l/52.52,13.41",
-        "timezone": "Europe/Berlin"
-      },
-      {
-        "city": "New York",
-        "state": "NY",
-        "country": "United States",
-        "url": "https://weather.com/weather/tenday/l/40.71,-74.01",
-        "timezone": "America/New_York"
-      },
-      {
-        "city": "Tokyo",
-        "state": "",
-        "country": "Japan",
-        "url": "https://weather.com/weather/tenday/l/35.68,139.69",
-        "timezone": "Asia/Tokyo"
-      },
-      {
-        "city": "London",
-        "state": "",
-        "country": "United Kingdom",
-        "url": "https://weather.com/weather/tenday/l/51.51,-0.13",
-        "timezone": "Europe/London"
-      },
-      {
-        "city": "Paris",
-        "state": "",
-        "country": "France",
-        "url": "https://weather.com/weather/tenday/l/48.86,2.35",
-        "timezone": "Europe/Paris"
-      },
-      {
-        "city": "Rome",
-        "state": "",
-        "country": "Italy",
-        "url": "https://weather.com/weather/tenday/l/41.90,12.49",
-        "timezone": "Europe/Rome"
-      },
-      {
-        "city": "Sydney",
-        "state": "",
-        "country": "Australia",
-        "url": "https://weather.com/weather/tenday/l/-33.87,151.21",
-        "timezone": "Australia/Sydney"
-      },
-      {
-        "city": "Moscow",
-        "state": "",
-        "country": "Russia",
-        "url": "https://weather.com/weather/tenday/l/55.76,37.62",
-        "timezone": "Europe/Moscow"
-      },
-      {
-        "city": "Mumbai",
-        "state": "MH",
-        "country": "India",
-        "url": "https://weather.com/weather/tenday/l/19.08,72.88",
-        "timezone": "Asia/Kolkata"
-      },
-      {
-        "city": "São Paulo",
-        "state": "",
-        "country": "Brazil",
-        "url": "https://weather.com/weather/tenday/l/-23.55,-46.63",
-        "timezone": "America/Sao_Paulo"
-      },
-      {
-        "city": "Toronto",
-        "state": "ON",
-        "country": "Canada",
-        "url": "https://weather.com/weather/tenday/l/43.65,-79.38",
-        "timezone": "America/Toronto"
-      },
-      {
-        "city": "Beijing",
-        "state": "",
-        "country": "China",
-        "url": "https://weather.com/weather/tenday/l/39.90,116.41",
-        "timezone": "Asia/Shanghai"
-      },
-      {
-        "city": "Cape Town",
-        "state": "",
-        "country": "South Africa",
-        "url": "https://weather.com/weather/tenday/l/-33.93,18.42",
-        "timezone": "Africa/Johannesburg"
-      },
-      {
-        "city": "Los Angeles",
-        "state": "CA",
-        "country": "United States",
-        "url": "https://weather.com/weather/tenday/l/34.05,-118.25",
-        "timezone": "America/Los_Angeles"
-      },
-      {
-        "city": "Buenos Aires",
-        "state": "",
-        "country": "Argentina",
-        "url": "https://weather.com/weather/tenday/l/-34.60,-58.38",
-        "timezone": "America/Argentina/Buenos_Aires"
-      },
-      {
-        "city": "Mexico City",
-        "state": "",
-        "country": "Mexico",
-        "url": "https://weather.com/weather/tenday/l/19.43,-99.13",
-        "timezone": "America/Mexico_City"
-      },
-      {
-        "city": "Cairo",
-        "state": "",
-        "country": "Egypt",
-        "url": "https://weather.com/weather/tenday/l/30.05,31.25",
-        "timezone": "Africa/Cairo"
-      },
-      {
-        "city": "Bangkok",
-        "state": "",
-        "country": "Thailand",
-        "url": "https://weather.com/weather/tenday/l/13.75,100.52",
-        "timezone": "Asia/Bangkok"
-      },
-      {
-        "city": "Singapore",
-        "state": "",
-        "country": "Singapore",
-        "url": "https://weather.com/weather/tenday/l/1.35,103.82",
-        "timezone": "Asia/Singapore"
-      },
-      {
-        "city": "Dubai",
-        "state": "",
-        "country": "United Arab Emirates",
-        "url": "https://weather.com/weather/tenday/l/25.20,55.27",
-        "timezone": "Asia/Dubai"
-      },
-      {
-        "city": "Seoul",
-        "state": "",
-        "country": "South Korea",
-        "url": "https://weather.com/weather/tenday/l/37.57,126.98",
-        "timezone": "Asia/Seoul"
-      },
-      {
-        "city": "Lagos",
-        "state": "",
-        "country": "Nigeria",
-        "url": "https://weather.com/weather/tenday/l/6.52,3.38",
-        "timezone": "Africa/Lagos"
-      },
-      {
-        "city": "Jakarta",
-        "state": "",
-        "country": "Indonesia",
-        "url": "https://weather.com/weather/tenday/l/-6.21,106.85",
-        "timezone": "Asia/Jakarta"
-      },
-      {
-        "city": "Kuala Lumpur",
-        "state": "",
-        "country": "Malaysia",
-        "url": "https://weather.com/weather/tenday/l/3.14,101.69",
-        "timezone": "Asia/Kuala_Lumpur"
-      },
-      {
-        "city": "Madrid",
-        "state": "",
-        "country": "Spain",
-        "url": "https://weather.com/weather/tenday/l/40.42,-3.70",
-        "timezone": "Europe/Madrid"
-      },
-      {
-        "city": "Barcelona",
-        "state": "",
-        "country": "Spain",
-        "url": "https://weather.com/weather/tenday/l/41.38,2.17",
-        "timezone": "Europe/Madrid"
-      },
-      {
-        "city": "Lima",
-        "state": "",
-        "country": "Peru",
-        "url": "https://weather.com/weather/tenday/l/-12.05,-77.03",
-        "timezone": "America/Lima"
-      },
-      {
-        "city": "Athens",
-        "state": "",
-        "country": "Greece",
-        "url": "https://weather.com/weather/tenday/l/37.98,23.72",
-        "timezone": "Europe/Athens"
-      },
-      {
-        "city": "Vienna",
-        "state": "",
-        "country": "Austria",
-        "url": "https://weather.com/weather/tenday/l/48.21,16.37",
-        "timezone": "Europe/Vienna"
-      },
-      {
-        "city": "Hong Kong",
-        "state": "",
-        "country": "China",
-        "url": "https://weather.com/weather/tenday/l/22.28,114.16",
-        "timezone": "Asia/Hong_Kong"
-      },
-      {
-        "city": "Stowe",
-        "state": "VT",
-        "country": "United States",
-        "url": "https://weather.com/weather/tenday/l/44.4654,-72.6874",
-        "timezone": "America/New_York"
-      },
-      {
-        "city": "Kaikoura",
-        "state": "",
-        "country": "New Zealand",
-        "url": "https://weather.com/weather/tenday/l/-42.4008,173.6817",
-        "timezone": "Pacific/Auckland"
-      },
-      {
-        "city": "Purmamarca",
-        "state": "",
-        "country": "Argentina",
-        "url": "https://weather.com/weather/tenday/l/-23.7415,-65.4965",
-        "timezone": "America/Argentina/Salta"
-      },
-      {
-        "city": "Hallstatt",
-        "state": "",
-        "country": "Austria",
-        "url": "https://weather.com/weather/tenday/l/47.5613,13.6487",
-        "timezone": "Europe/Vienna"
-      },
-      {
-        "city": "Giethoorn",
-        "state": "",
-        "country": "Netherlands",
-        "url": "https://weather.com/weather/tenday/l/52.7358,6.0767",
-        "timezone": "Europe/Amsterdam"
-      },
-      {
-        "city": "Reine",
-        "state": "",
-        "country": "Norway",
-        "url": "https://weather.com/weather/tenday/l/67.9270,13.0878"
-      },
-      {
-        "city": "Chefchaouen",
-        "state": "",
-        "country": "Morocco",
-        "url": "https://weather.com/weather/tenday/l/35.1715,-5.2697"
-      },
-      {
-        "city": "Luderitz",
-        "state": "",
-        "country": "Namibia",
-        "url": "https://weather.com/weather/tenday/l/-26.6476,15.1540"
-      },
-      {
-        "city": "Tofo",
-        "state": "",
-        "country": "Mozambique",
-        "url": "https://weather.com/weather/tenday/l/-23.8647,35.5322"
-      },
-      {
-        "city": "Mawlyngkhung",
-        "state": "",
-        "country": "India",
-        "url": "https://weather.com/en-IN/weather/tenday/l/d76e154880f33168d5987bdcc05f99cc999cb3be78174aaef28b20181548c09f"
-      },
-      {
-        "city": "Hahndorf",
-        "state": "",
-        "country": "Australia",
-        "url": "https://weather.com/weather/tenday/l/-35.0280,138.8103"
-      },
-      {
-        "city": "Pai",
-        "state": "",
-        "country": "Thailand",
-        "url": "https://weather.com/weather/tenday/l/19.3583,98.4387"
-      },
-      {
-        "city": "Colonia del Sacramento",
-        "state": "",
-        "country": "Uruguay",
-        "url": "https://weather.com/weather/tenday/l/-34.4693,-57.8447"
-      },
-      {
-        "city": "Copacabana",
-        "state": "",
-        "country": "Bolivia",
-        "url": "https://weather.com/weather/tenday/l/-16.1667,-69.0833"
-      },
-      {
-        "city": "San Pedro de Atacama",
-        "state": "",
-        "country": "Chile",
-        "url": "https://weather.com/weather/tenday/l/-22.9114,-68.2012"
-      },
-      {
-        "city": "Istanbul",
-        "state": "",
-        "country": "Turkey",
-        "url": "https://weather.com/weather/tenday/l/41.01,28.95"
-      }
-    ],
+  "TheWeatherChannel": [
+    {
+      "city": "Berlin",
+      "state": "",
+      "country": "Germany",
+      "url": "https://weather.com/weather/tenday/l/52.52,13.41"
+    },
+    {
+      "city": "New York",
+      "state": "NY",
+      "country": "United States",
+      "url": "https://weather.com/weather/tenday/l/40.71,-74.01"
+    },
+    {
+      "city": "Tokyo",
+      "state": "",
+      "country": "Japan",
+      "url": "https://weather.com/weather/tenday/l/35.68,139.69"
+    },
+    {
+      "city": "London",
+      "state": "",
+      "country": "United Kingdom",
+      "url": "https://weather.com/weather/tenday/l/51.51,-0.13"
+    },
+    {
+      "city": "Paris",
+      "state": "",
+      "country": "France",
+      "url": "https://weather.com/weather/tenday/l/48.86,2.35"
+    },
+    {
+      "city": "Rome",
+      "state": "",
+      "country": "Italy",
+      "url": "https://weather.com/weather/tenday/l/41.90,12.49"
+    },
+    {
+      "city": "Sydney",
+      "state": "",
+      "country": "Australia",
+      "url": "https://weather.com/weather/tenday/l/-33.87,151.21"
+    },
+    {
+      "city": "Moscow",
+      "state": "",
+      "country": "Russia",
+      "url": "https://weather.com/weather/tenday/l/55.76,37.62"
+    },
+    {
+      "city": "Mumbai",
+      "state": "MH",
+      "country": "India",
+      "url": "https://weather.com/weather/tenday/l/19.08,72.88"
+    },
+    {
+      "city": "São Paulo",
+      "state": "",
+      "country": "Brazil",
+      "url": "https://weather.com/weather/tenday/l/-23.55,-46.63"
+    },
+    {
+      "city": "Toronto",
+      "state": "ON",
+      "country": "Canada",
+      "url": "https://weather.com/weather/tenday/l/43.65,-79.38"
+    },
+    {
+      "city": "Beijing",
+      "state": "",
+      "country": "China",
+      "url": "https://weather.com/weather/tenday/l/39.90,116.41"
+    },
+    {
+      "city": "Cape Town",
+      "state": "",
+      "country": "South Africa",
+      "url": "https://weather.com/weather/tenday/l/-33.93,18.42"
+    },
+    {
+      "city": "Los Angeles",
+      "state": "CA",
+      "country": "United States",
+      "url": "https://weather.com/weather/tenday/l/34.05,-118.25"
+    },
+    {
+      "city": "Buenos Aires",
+      "state": "",
+      "country": "Argentina",
+      "url": "https://weather.com/weather/tenday/l/-34.60,-58.38"
+    },
+    {
+      "city": "Mexico City",
+      "state": "",
+      "country": "Mexico",
+      "url": "https://weather.com/weather/tenday/l/19.43,-99.13"
+    },
+    {
+      "city": "Cairo",
+      "state": "",
+      "country": "Egypt",
+      "url": "https://weather.com/weather/tenday/l/30.05,31.25"
+    },
+    {
+      "city": "Bangkok",
+      "state": "",
+      "country": "Thailand",
+      "url": "https://weather.com/weather/tenday/l/13.75,100.52"
+    },
+    {
+      "city": "Singapore",
+      "state": "",
+      "country": "Singapore",
+      "url": "https://weather.com/weather/tenday/l/1.35,103.82"
+    },
+    {
+      "city": "Dubai",
+      "state": "",
+      "country": "United Arab Emirates",
+      "url": "https://weather.com/weather/tenday/l/25.20,55.27"
+    },
+    {
+      "city": "Seoul",
+      "state": "",
+      "country": "South Korea",
+      "url": "https://weather.com/weather/tenday/l/37.57,126.98"
+    },
+    {
+      "city": "Lagos",
+      "state": "",
+      "country": "Nigeria",
+      "url": "https://weather.com/weather/tenday/l/6.52,3.38"
+    },
+    {
+      "city": "Jakarta",
+      "state": "",
+      "country": "Indonesia",
+      "url": "https://weather.com/weather/tenday/l/-6.21,106.85"
+    },
+    {
+      "city": "Kuala Lumpur",
+      "state": "",
+      "country": "Malaysia",
+      "url": "https://weather.com/weather/tenday/l/3.14,101.69"
+    },
+    {
+      "city": "Madrid",
+      "state": "",
+      "country": "Spain",
+      "url": "https://weather.com/weather/tenday/l/40.42,-3.70"
+    },
+    {
+      "city": "Barcelona",
+      "state": "",
+      "country": "Spain",
+      "url": "https://weather.com/weather/tenday/l/41.38,2.17"
+    },
+    {
+      "city": "Lima",
+      "state": "",
+      "country": "Peru",
+      "url": "https://weather.com/weather/tenday/l/-12.05,-77.03"
+    },
+    {
+      "city": "Athens",
+      "state": "",
+      "country": "Greece",
+      "url": "https://weather.com/weather/tenday/l/37.98,23.72"
+    },
+    {
+      "city": "Vienna",
+      "state": "",
+      "country": "Austria",
+      "url": "https://weather.com/weather/tenday/l/48.21,16.37"
+    },
+    {
+      "city": "Sydney",
+      "state": "",
+      "country": "Australia",
+      "url": "https://weather.com/weather/tenday/l/-33.87,151.21"
+    },
+    {
+      "city": "Hong Kong",
+      "state": "",
+      "country": "China",
+      "url": "https://weather.com/weather/tenday/l/22.28,114.16"
+    },
+    {
+      "city": "São Paulo",
+      "state": "",
+      "country": "Brazil",
+      "url": "https://weather.com/weather/tenday/l/-23.55,-46.63"
+    },
+    {
+      "city": "Jakarta",
+      "state": "",
+      "country": "Indonesia",
+      "url": "https://weather.com/weather/tenday/l/-6.21,106.85"
+    },
+    {
+      "city": "Cairo",
+      "state": "",
+      "country": "Egypt",
+      "url": "https://weather.com/weather/tenday/l/30.05,31.25"
+    },
+    {
+      "city": "Buenos Aires",
+      "state": "",
+      "country": "Argentina",
+      "url": "https://weather.com/weather/tenday/l/-34.60,-58.38"
+    },
+    {
+      "city": "Lagos",
+      "state": "",
+      "country": "Nigeria",
+      "url": "https://weather.com/weather/tenday/l/6.52,3.38"
+    },
+    {
+      "city": "Kuala Lumpur",
+      "state": "",
+      "country": "Malaysia",
+      "url": "https://weather.com/weather/tenday/l/3.14,101.69"
+    },
+    {
+      "city": "Bangkok",
+      "state": "",
+      "country": "Thailand",
+      "url": "https://weather.com/weather/tenday/l/13.75,100.52"
+    },
+    {
+      "city": "Singapore",
+      "state": "",
+      "country": "Singapore",
+      "url": "https://weather.com/weather/tenday/l/1.35,103.82"
+    },
+    {
+      "city": "Istanbul",
+      "state": "",
+      "country": "Turkey",
+      "url": "https://weather.com/weather/tenday/l/41.01,28.95"
+    },
+    {
+      "city": "Moscow",
+      "state": "",
+      "country": "Russia",
+      "url": "https://weather.com/weather/tenday/l/55.76,37.62"
+    },
+    {
+      "city": "Mexico City",
+      "state": "",
+      "country": "Mexico",
+      "url": "https://weather.com/weather/tenday/l/19.43,-99.13"
+    },
+    {
+      "city": "Lima",
+      "state": "",
+      "country": "Peru",
+      "url": "https://weather.com/weather/tenday/l/-12.05,-77.03"
+    },
+    {
+      "city": "Athens",
+      "state": "",
+      "country": "Greece",
+      "url": "https://weather.com/weather/tenday/l/37.98,23.72"
+    },
+    {
+      "city": "Vienna",
+      "state": "",
+      "country": "Austria",
+      "url": "https://weather.com/weather/tenday/l/48.21,16.37"
+    },
+    {
+      "city": "Hong Kong",
+      "state": "",
+      "country": "China",
+      "url": "https://weather.com/weather/tenday/l/22.28,114.16"
+    },
+    {
+    "city": "Stowe",
+    "state": "VT",
+    "country": "United States",
+    "url": "https://weather.com/weather/tenday/l/44.4654,-72.6874"
+  },
+  {
+    "city": "Kaikoura",
+    "state": "",
+    "country": "New Zealand",
+    "url": "https://weather.com/weather/tenday/l/-42.4008,173.6817"
+  },
+  {
+    "city": "Purmamarca",
+    "state": "",
+    "country": "Argentina",
+    "url": "https://weather.com/weather/tenday/l/-23.7415,-65.4965"
+  },
+  {
+    "city": "Hallstatt",
+    "state": "",
+    "country": "Austria",
+    "url": "https://weather.com/weather/tenday/l/47.5613,13.6487"
+  },
+  {
+    "city": "Giethoorn",
+    "state": "",
+    "country": "Netherlands",
+    "url": "https://weather.com/weather/tenday/l/52.7358,6.0785"
+  },
+  {
+    "city": "Reine",
+    "state": "",
+    "country": "Norway",
+    "url": "https://weather.com/weather/tenday/l/67.9270,13.0878"
+  },
+  {
+    "city": "Chefchaouen",
+    "state": "",
+    "country": "Morocco",
+    "url": "https://weather.com/weather/tenday/l/35.1715,-5.2697"
+  },
+  {
+    "city": "Luderitz",
+    "state": "",
+    "country": "Namibia",
+    "url": "https://weather.com/weather/tenday/l/-26.6476,15.1540"
+  },
+  {
+    "city": "Tofo",
+    "state": "",
+    "country": "Mozambique",
+    "url": "https://weather.com/weather/tenday/l/-23.8647,35.5322"
+  },
+  {
+    "city": "Mawlyngkhung",
+    "state": "",
+    "country": "India",
+    "url": "https://weather.com/en-IN/weather/tenday/l/d76e154880f33168d5987bdcc05f99cc999cb3be78174aaef28b20181548c09f"
+  },
+  {
+    "city": "Hahndorf",
+    "state": "",
+    "country": "Australia",
+    "url": "https://weather.com/weather/tenday/l/-35.0280,138.8103"
+  },
+  {
+    "city": "Pai",
+    "state": "",
+    "country": "Thailand",
+    "url": "https://weather.com/weather/tenday/l/19.3583,98.4387"
+  },
+  {
+    "city": "Colonia del Sacramento",
+    "state": "",
+    "country": "Uruguay",
+    "url": "https://weather.com/weather/tenday/l/-34.4693,-57.8447"
+  },
+  {
+    "city": "Copacabana",
+    "state": "",
+    "country": "Bolivia",
+    "url": "https://weather.com/weather/tenday/l/-16.1667,-69.0833"
+  },
+  {
+    "city": "San Pedro de Atacama",
+    "state": "",
+    "country": "Chile",
+    "url": "https://weather.com/weather/tenday/l/-22.9114,-68.2012"
+  }
+  ],
   "AccuWeather": [
     {
       "city": "Berlin",
