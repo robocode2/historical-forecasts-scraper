@@ -42,7 +42,12 @@ class TheWeatherChannelSpider(scrapy.Spider):
             item['date'] = datetime.now().strftime('%Y-%m-%d')
             item['day'] = day.css('h2.DetailsSummary--daypartName--kbngc::text').get()
             item['weather_condition'] = day.css('div.DetailsSummary--condition--2JmHb span::text').get()
-            item['precipitation_chance'] = day.css('div.DetailsSummary--precip--1a98O span::text').get().replace('%', '')
+            # Update for precipitation chance extraction
+            precip_selector = day.css('div.DailyContent--precipIconBlock--LoWxx span.DailyContent--value--Xgh8M::text').get()
+            if precip_selector:
+                item['precipitation_chance'] = precip_selector.replace('%', '').strip()
+            else:
+                item['precipitation_chance'] = None            
             item['precipitation_amount'] = None
             item['wind_speed'] = day.css('span[data-testid="Wind"] span:nth-child(2)::text').extract_first()
             item['humidity'] = humidity
