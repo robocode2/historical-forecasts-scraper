@@ -23,8 +23,6 @@ class MeteoblueSpider(scrapy.Spider):
         city = response.meta.get('city')
         country = response.meta.get('country')
         state = response.meta.get('state')
-        if state == '':
-            state = None
         current_date = datetime.now(timezone.utc)
 
         
@@ -64,6 +62,7 @@ class MeteoblueSpider(scrapy.Spider):
                 temp_high = fahrenheit_to_celsius(temp_high)
                 temp_low = fahrenheit_to_celsius(temp_low)
                 precipitation_amount= inch_to_mm(float(precipitation_amount))
+
                 
             item = DayForecastItem(
                 country=country,
@@ -73,7 +72,7 @@ class MeteoblueSpider(scrapy.Spider):
                 temp_high=temp_high,
                 temp_low=temp_low,
                 precipitation_chance=columns[i][4].replace('%', '') if len(columns[i]) > 4 else None,
-                precipitation_amount=precipitation_amount,
+                precipitation_amount=float(precipitation_amount),
                 wind_speed=None,
                 humidity= None,
                 source='MeteoBlue',
