@@ -1,3 +1,4 @@
+
 from datetime import datetime, timedelta, timezone
 import scrapy
 from scrapy_selenium import SeleniumRequest
@@ -6,7 +7,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from weatherscraper.items import DayForecastItem
 from weatherscraper.utils import fahrenheit_to_celsius, inch_to_mm, initialize_driver, load_locations, mph_to_kmh
-
 
 
 class TimeAndDateSpider(scrapy.Spider):
@@ -37,8 +37,6 @@ class TimeAndDateSpider(scrapy.Spider):
         city = response.meta.get('city')
         country = response.meta.get('country')
         state = response.meta.get('state')
-        if state == '':
-            state = None
         
         current_date = datetime.now(timezone.utc)
 
@@ -54,6 +52,7 @@ class TimeAndDateSpider(scrapy.Spider):
                     temp_high, temp_low = map(self.process_temperature, temps, ['C', 'C'])
                 else:
                     temp_high, temp_low = map(self.process_temperature, temps)
+
 
             weather_condition = row.css('td.small::text').get()
 
@@ -76,7 +75,6 @@ class TimeAndDateSpider(scrapy.Spider):
                     precipitation_amount = inch_to_mm(precipitation_amount)
                 if wind_speed is not None:
                     wind_speed = mph_to_kmh(wind_speed)
-                temp_high, temp_low = map(self.process_temperature, temps)
                 
             humidity = row.xpath(f'//*[@id="wt-ext"]/tbody/tr[{index + 1}]/td[7]/text()').get()
             if humidity:
@@ -113,4 +111,3 @@ class TimeAndDateSpider(scrapy.Spider):
                 return float(temp_text)
             except ValueError:
                 return None
-
