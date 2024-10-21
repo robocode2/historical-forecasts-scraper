@@ -49,4 +49,4 @@ def inch_to_mm(inches):
 
 
 def mph_to_kmh(mph):
-    return round(float(mph) * 1.60934, 2)
+    return int(round(float(mph) * 1.60934, 2))
