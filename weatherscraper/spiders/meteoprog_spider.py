@@ -30,7 +30,8 @@ class MeteoprogSpider(scrapy.Spider):
         precipitation_chances = []
         weather_descriptions = []
         weather_elements = response.xpath('/html/body/div[4]/main/article/section[2]/div/div[3]/div/div/div[3]/div[2]')
-
+        element_count = len(weather_elements)
+        
         weather_descriptions = []
         for element in weather_elements:
             title = element.xpath('./@title').get()
@@ -39,7 +40,7 @@ class MeteoprogSpider(scrapy.Spider):
                 weather_descriptions.append(weather_description)
 
 
-        for i in range(1, 15):
+        for i in range(1, element_count+1):
             wind_speed_selector = f'#weather-temp-graph-week > div > div > div.item-table > ul.wind-speed-list > li:nth-child({i}) > span::text'
             wind_value = response.css(wind_speed_selector).get()
             wind_speed.append(wind_value.strip() if wind_value else None) 
@@ -67,7 +68,7 @@ class MeteoprogSpider(scrapy.Spider):
             temp_max.append(max_temp.strip().replace('°', '').replace('+', '').replace('C', '') if max_temp else '')
             temp_min.append(min_temp.strip().replace('°', '').replace('+', '').replace('C', '') if min_temp else '')
 
-        for i in range(14):
+        for i in range(element_count):
             item = DayForecastItem(
                 country=country,
                 state=state,
@@ -75,7 +76,7 @@ class MeteoprogSpider(scrapy.Spider):
                 temp_high=temp_max[i] if i < len(temp_max) else None, 
                 temp_low=temp_min[i] if i < len(temp_min) else None,
                 precipitation_chance=precipitation_chances[i], 
-                precipitation_amount=precipitation_amounts[i] if i < len(precipitation_amounts) else None,
+                precipitation_amount=float(precipitation_amounts[i]) if i < len(precipitation_amounts) else None,
                 humidity=humidity[i] if i < len(humidity) else None,
                 wind_speed=float(wind_speed[i])*3.6 if i < len(wind_speed) and wind_speed[i] else None,
                 weather_condition=weather_descriptions[i],
