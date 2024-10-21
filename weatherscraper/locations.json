@@ -211,12 +211,6 @@
       "url": "https://weather.com/weather/tenday/l/-34.60,-58.38"
     },
     {
-      "city": "Lagos",
-      "state": "",
-      "country": "Nigeria",
-      "url": "https://weather.com/weather/tenday/l/6.52,3.38"
-    },
-    {
       "city": "Kuala Lumpur",
       "state": "",
       "country": "Malaysia",
@@ -792,12 +786,6 @@
       "url": "https://www.meteoblue.com/en/weather/14-days/jakarta_indonesia_1642911"
     },
     {
-      "city": "Kuala Lumpur",
-      "state": "",
-      "country": "Malaysia",
-      "url": "https://www.meteoblue.com/en/weather/14-days/kuala-lumpur_malaysia_1735161"
-    },
-    {
       "city": "Madrid",
       "state": "",
       "country": "Spain",
@@ -862,12 +850,6 @@
       "state": "",
       "country": "Argentina",
       "url": "https://www.meteoblue.com/en/weather/14-days/buenos-aires_argentina_3435910"
-    },
-    {
-      "city": "Lagos",
-      "state": "",
-      "country": "Nigeria",
-      "url": "https://www.meteoblue.com/en/weather/14-days/lagos_nigeria_2332459"
     },
     {
       "city": "Kuala Lumpur",
@@ -1509,12 +1491,6 @@
       "state": "",
       "country": "Argentina",
       "url": "https://www.timeanddate.com/weather/argentina/buenos-aires/ext"
-    },
-    {
-      "city": "Lagos",
-      "state": "",
-      "country": "Nigeria",
-      "url": "https://www.timeanddate.com/weather/nigeria/lagos/ext"
     },
     {
       "city": "Kuala Lumpur",
