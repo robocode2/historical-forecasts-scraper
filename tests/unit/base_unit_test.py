@@ -1,11 +1,10 @@
-from datetime import datetime, timedelta, timezone
+from datetime import timedelta
 import pytest
 from scrapy.http import HtmlResponse, Request
-from weatherscraper.items import DayForecastItem
 
-class BaseSpiderTest:
-    spider_class = None  # To be set in subclasses
-    url = ''  # To be set in subclasses
+class BaseUnitTest:
+    spider_class = None
+    url = '' 
     city = ''
     country = ''
     state = ''
@@ -16,14 +15,12 @@ class BaseSpiderTest:
 
     @pytest.fixture
     def mock_response(self):
-        # Create the mock response using the URL set in the subclass
         request = Request(url=self.url, meta={
             'city': self.city,
             'country': self.country,
             'state': self.state
         })
 
-        # Load the HTML content from the corresponding mock file
         with open(f'tests/mocks/{self.spider_class.__name__.lower()}.html', 'r', encoding='utf-8') as f:
             body = f.read()
 
@@ -34,7 +31,6 @@ class BaseSpiderTest:
         raise NotImplementedError("Subclasses must define expected_items")
     
     def test_parse(self, spider, mock_response):
-        # Set the meta data for the mock response
         mock_response.request = type('Request', (), {'meta': {
             'city': self.city,
             'country': self.country,
@@ -51,8 +47,15 @@ class BaseSpiderTest:
             assert expected['country'] == actual['country']
             assert expected['state'] == actual['state']
             assert expected['city'] == actual['city']
-            assert expected['temp_high'] == actual['temp_high']
-            assert expected['temp_low'] == actual['temp_low']
+            if expected['temp_high'] is not None and actual['temp_high'] is not None:
+                assert float(expected['temp_high']) == float(actual['temp_high'])
+            else:
+                assert expected['temp_high'] == actual['temp_high']  # TODOX WHAT ?! Both should be None if no temp 
+
+            if expected['temp_low'] is not None and actual['temp_low'] is not None:
+                assert float(expected['temp_low']) == float(actual['temp_low'])
+            else:
+                assert expected['temp_low'] == actual['temp_low']  # TODOX WHAT ? Both should be None if no temp
             assert expected['precipitation_chance'] == actual['precipitation_chance']
             assert expected['precipitation_amount'] == actual['precipitation_amount']
             assert expected['humidity'] == actual['humidity']
