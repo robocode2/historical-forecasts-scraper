@@ -70,6 +70,6 @@ class TheWeatherChannelSpider(scrapy.Spider):
             temp_low = response.xpath(day_selector + '//*[contains(@class, "DetailsSummary--lowTempValue")]/text()').get()
             item['temp_low'] = temp_low if temp_low != "--" else None
             
-            item['date'] = current_date  
-            item['day'] = current_date + timedelta(days=i) 
+            item['collection_date'] = current_date  
+            item['forecasted_day'] = current_date + timedelta(days=i) 
             yield item

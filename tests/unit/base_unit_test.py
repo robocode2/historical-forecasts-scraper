@@ -64,5 +64,5 @@ class BaseUnitTest:
             assert expected['source'] == actual['source']
             
             if previous_day:
-                assert actual['day'] == previous_day + timedelta(days=1)
-            previous_day = actual['day']
+                assert actual['forecasted_day'] == previous_day + timedelta(days=1)
+            previous_day = actual['forecasted_day']

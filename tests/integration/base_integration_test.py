@@ -98,7 +98,7 @@ class BaseIntegrationTest:
                 SELECT f.*
                 FROM Forecast f
                 WHERE f.city_id = %s AND f.source_id = %s
-                ORDER BY f.date ASC
+                ORDER BY f.collection_date ASC
             """, (city_id, source_id))
             
             db_forecasts = cursor.fetchall()
@@ -110,7 +110,7 @@ class BaseIntegrationTest:
                 for field in ['temp_high', 'temp_low', 'precipitation_chance', 'precipitation_amount', 'wind_speed',  'humidity','weather_condition']:
                     self.assert_value(expected_forecast[field], db_forecast[field])
                 
-                db_day = db_forecast['day'] 
+                db_day = db_forecast['forecasted_day'] 
                 if previous_day:
                     assert db_day.date() == previous_day.date() + timedelta(days=1), f"Day {db_day} is not 1 day after {previous_day}"
                 previous_day = db_day

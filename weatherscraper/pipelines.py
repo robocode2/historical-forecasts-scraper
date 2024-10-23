@@ -7,17 +7,25 @@ import psycopg2
 from scrapy.exceptions import DropItem
 
 class PostgreSQLPipeline:
-   def open_spider(self, spider):
-        self.connection = psycopg2.connect()
-        self.cursor = self.connection.cursor()
+    
+    def open_spider(self, spider):
+        try:
+            self.connection = psycopg2.connect(
 
-   def close_spider(self, spider):
-        self.cursor.close()
-        self.connection.close()
+            )
+            self.cursor = self.connection.cursor()
+        except psycopg2.Error as e:
+            spider.logger.error(f"Error connecting to PostgreSQL: {e}")
+            raise
+
+    def close_spider(self, spider):
+        if hasattr(self, 'cursor') and self.cursor:
+            self.cursor.close()
+        if hasattr(self, 'connection') and self.connection:
+            self.connection.close()
  
-   def process_item(self, item, spider):
+    def process_item(self, item, spider):
             try:
-                # Insert City if not exists
                 self.cursor.execute("""
                     INSERT INTO City (name)
                     SELECT %s
@@ -30,12 +38,10 @@ class PostgreSQLPipeline:
                 if city_result:
                     city_id = city_result[0]
                 else:
-                    # Fetch city_id if it already exists
                     self.cursor.execute("SELECT id FROM City WHERE name = %s", (item['city'],))
-                    city_id = self.cursor.fetchone()[0]  # Assuming the city exists, fetch its id
+                    city_id = self.cursor.fetchone()[0]
 
 
-                # Insert Country if not exists
                 self.cursor.execute("""
                     INSERT INTO Country (name)
                     SELECT %s
@@ -48,12 +54,10 @@ class PostgreSQLPipeline:
                 if country_result:
                     country_id = country_result[0]
                 else:
-                    # Fetch country if it already exists
                     self.cursor.execute("SELECT id FROM Country WHERE name = %s", (item['country'],))
-                    country_id = self.cursor.fetchone()[0]  # Assuming the country exists, fetch its id
+                    country_id = self.cursor.fetchone()[0] 
 
 
-                 # Insert City if not exists
                 self.cursor.execute("""
                     INSERT INTO Source (name)
                     SELECT %s
@@ -66,21 +70,19 @@ class PostgreSQLPipeline:
                 if source_result:
                     source_id = source_result[0]
                 else:
-                    # Fetch source if it already exists
                     self.cursor.execute("SELECT id FROM Source WHERE name = %s", (item['source'],))
-                    source_id = self.cursor.fetchone()[0]  # Assuming the city exists, fetch its id
+                    source_id = self.cursor.fetchone()[0] 
 
-                # Insert Forecast
                 self.cursor.execute("""
-                    INSERT INTO Forecast (source_id, city_id, country_id, state, date, day, precipitation_chance, precipitation_amount, temp_high, temp_low, wind_speed, humidity, weather_condition)
+                    INSERT INTO Forecast (source_id, city_id, country_id, state, collection_date, forecasted_day, precipitation_chance, precipitation_amount, temp_high, temp_low, wind_speed, humidity, weather_condition)
                     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                 """, (
                     source_id,
                     city_id,
                     country_id,
                     item['state'],
-                    item['date'],
-                    item['day'],
+                    item['collection_date'],
+                    item['forecasted_day'],
                     item['precipitation_chance'],
                     item['precipitation_amount'],
                     item['temp_high'],

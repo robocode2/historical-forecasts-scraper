@@ -1,4 +1,3 @@
-
 from datetime import datetime, timedelta, timezone
 import scrapy
 from scrapy_selenium import SeleniumRequest
@@ -8,14 +7,19 @@ from selenium.webdriver.support import expected_conditions as EC
 from weatherscraper.items import DayForecastItem
 from weatherscraper.utils import fahrenheit_to_celsius, inch_to_mm, initialize_driver, load_locations, mph_to_kmh
 
-
 class TimeAndDateSpider(scrapy.Spider):
     name = "TimeAndDate"
     locations = []
-    
+    driver = None  # To store the WebDriver instance
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.locations = load_locations("TimeAndDate")
+        self.driver = initialize_driver()  # Initialize the driver here
+
+    def close(self, reason):
+        if self.driver:  # Check if driver is initialized
+            self.driver.quit()  # Close the driver
 
     def start_requests(self):
         for location in self.locations:
@@ -24,10 +28,8 @@ class TimeAndDateSpider(scrapy.Spider):
             yield SeleniumRequest(url=url, callback=self.parse, wait_time=10, meta=meta)
 
     def parse(self, response):
-        driver = initialize_driver()
-        
         try:
-            accept_button = WebDriverWait(driver, 10).until(
+            accept_button = WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable((By.XPATH, '//*[@id="qc-cmp2-ui"]/div[2]/div/button[2]'))
             )
             accept_button.click()
@@ -92,12 +94,10 @@ class TimeAndDateSpider(scrapy.Spider):
                 humidity=humidity,
                 weather_condition=weather_condition,
                 source="TimeAndDate",
-                date= current_date,
-                day= current_date + timedelta(days=index)
-                
+                collection_date=current_date,
+                forecasted_day=current_date + timedelta(days=index)  
             )
             yield item
-
 
     def process_temperature(self, temp_text, unit=None):
         temp_text = temp_text.strip()

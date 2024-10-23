@@ -81,8 +81,8 @@ class MeteoprogSpider(scrapy.Spider):
                 wind_speed=float(wind_speed[i])*3.6 if i < len(wind_speed) and wind_speed[i] else None,
                 weather_condition=weather_descriptions[i],
                 source='MeteoProg',
-                date= current_date,
-                day= current_date + timedelta(days=i)
+                collection_date= current_date,
+                forecasted_day= current_date + timedelta(days=i)
                 
             )
             

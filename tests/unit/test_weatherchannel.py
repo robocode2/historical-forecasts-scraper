@@ -38,8 +38,8 @@ class TestTheWeatherChannelSpider(BaseUnitTest):
                 country=self.country,
                 state=self.state,
                 city=self.city,
-                date=current_date,
-                day=current_date + timedelta(days=i),
+                collection_date=current_date,
+                forecasted_day=current_date + timedelta(days=i),
                 **data  # Unpack the dictionary into the DayForecastItem
             ) for i, data in enumerate(forecast_data)
         ]

@@ -76,8 +76,8 @@ class MeteoblueSpider(scrapy.Spider):
                 wind_speed=None,
                 humidity= None,
                 source='MeteoBlue',
-                date= current_date,
-                day= current_date + timedelta(days=i)
+                collection_date= current_date,
+                forecasted_day= current_date + timedelta(days=i)
             )
             yield item
 
