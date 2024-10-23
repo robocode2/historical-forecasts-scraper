@@ -24,4 +24,4 @@ RUN pip install scrapyd
 EXPOSE 6800
 
 # Start Scrapyd
-CMD ["scrapyd"]
+CMD scrapyd & sleep 5 && scrapyd-deploy default && tail -f /dev/null

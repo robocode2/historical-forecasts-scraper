@@ -1,0 +1,6 @@
+CSV/
+.idea/
+tests/
+temp/
+responses/
+.pytest_cache/
