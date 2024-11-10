@@ -2,7 +2,7 @@ from datetime import datetime, timedelta, timezone
 import pytest
 from tests.integration.base_integration_test import BaseIntegrationTest
 from weatherscraper.items import DayForecastItem
-from weatherscraper.spiders.weather_spider import TheWeatherChannelSpider
+from weatherscraper.spiders.weatherchannel_spider import TheWeatherChannelSpider
 
 
 class TestTheWeatherChannel(BaseIntegrationTest):

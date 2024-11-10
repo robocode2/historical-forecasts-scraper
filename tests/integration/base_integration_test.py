@@ -35,11 +35,11 @@ class BaseIntegrationTest:
     def db_connection(self):
         try:
             connection = psycopg2.connect(
-                host='localhost',
-                database='testforecastsdb',
-                user='rabiecode',
+                host= '127.0.0.1',  
+                port='5434',          
+                user='postgres',   
                 password='IDnowLOV123!',
-                port='5432'
+                database='testforecastsdb',
             )
             yield connection
         except psycopg2.OperationalError as e:

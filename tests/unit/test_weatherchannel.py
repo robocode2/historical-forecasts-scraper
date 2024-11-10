@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta, timezone
 from tests.unit.base_unit_test import BaseUnitTest
 from weatherscraper.items import DayForecastItem
-from weatherscraper.spiders.weather_spider import TheWeatherChannelSpider
+from weatherscraper.spiders.weatherchannel_spider import TheWeatherChannelSpider
 
 
 class TestTheWeatherChannelSpider(BaseUnitTest):

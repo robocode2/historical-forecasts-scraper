@@ -1,11 +1,11 @@
 from datetime import datetime, timedelta, timezone
 from tests.unit.base_unit_test import BaseUnitTest
 from weatherscraper.items import DayForecastItem
-from weatherscraper.spiders.meteoblue_spider import MeteoblueSpider
+from weatherscraper.spiders.meteoblue_spider import MeteoBlueSpider
 
 
 class TestMeteoblueSpider(BaseUnitTest):
-    spider_class = MeteoblueSpider
+    spider_class = MeteoBlueSpider
     url = 'https://www.meteoblue.com/en/weather/14-days/rome_italy_3169070'
     city = 'Rome'
     country = 'Italy'

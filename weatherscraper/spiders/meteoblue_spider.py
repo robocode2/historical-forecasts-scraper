@@ -5,9 +5,8 @@ from weatherscraper.items import DayForecastItem
 from weatherscraper.utils import fahrenheit_to_celsius, inch_to_mm, load_locations
 import json
 
-class MeteoblueSpider(scrapy.Spider):
+class MeteoBlueSpider(scrapy.Spider):
     name = "MeteoBlue"
-    locations = []
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -15,70 +14,86 @@ class MeteoblueSpider(scrapy.Spider):
 
     def start_requests(self):
         for location in self.locations:
-            url = location.get('url')
-            meta = {'city': location.get('city'), 'country': location.get('country'), 'state': location.get('state')}
-            yield SeleniumRequest(url=url, callback=self.parse, wait_time=10, meta=meta)
+            yield SeleniumRequest(
+                url=location.get('url'),
+                callback=self.parse,
+                wait_time=10,
+                meta={'city': location.get('city'), 'country': location.get('country'), 'state': location.get('state')}
+            )
 
     def parse(self, response):
-        city = response.meta.get('city')
-        country = response.meta.get('country')
-        state = response.meta.get('state')
+        meta_data = response.meta
         current_date = datetime.now(timezone.utc)
-
         
-        rows = response.css('table.forecast-table tr')
-        
-        columns = [[] for _ in range(14)]
+        columns = self._extract_table_data(response)
+        weather_conditions = self._extract_weather_conditions(response)
+        precipitation_data = self._parse_precipitation_data(response)
 
-        for row in rows[1:5] + rows[13:14]:  # rows 2-5 and row 14 are irrelevant
-            data = row.css('td::text').getall()
-            if data:
-                for i in range(14):
-                    columns[i].append(data[i].strip() if i < len(data) else '')
-
-        weather_conditions = [[] for _ in range(14)]
-        for row in rows:
-            imgs = row.xpath('td/img')
-            for i, img in enumerate(imgs):
-                title = img.xpath('@title').get()
-                weather_conditions[i].append(title.strip() if title else '')
-
-        precipitation_data_str = response.xpath('//*[@id="canvas_14_days_forecast_precipitations"]/@data-precipitation').get()
-
-        try:
-            precipitation_data = json.loads(precipitation_data_str) if precipitation_data_str else [None] * 14
-        except json.JSONDecodeError:
-            self.logger.error(f"Failed to parse precipitation data: {precipitation_data_str}")
-            precipitation_data = [None] * 14
-
-
-        temp_unit = response.css('.h1.current-temp::text').re_first(r'°[CF]')
-        for i in range(14):
-            temp_high = columns[i][2].replace('°', '') if len(columns[i]) > 2 else None
-            temp_low = columns[i][3].replace('°', '') if len(columns[i]) > 3 else None
-            precipitation_amount=precipitation_data[i] if i < len(precipitation_data) else None
-
-            if temp_unit == '°F':
-                temp_high = fahrenheit_to_celsius(temp_high)
-                temp_low = fahrenheit_to_celsius(temp_low)
-                precipitation_amount= inch_to_mm(float(precipitation_amount))
-
-                
-            item = DayForecastItem(
-                country=country,
-                state=state,
-                city=city,
-                weather_condition=weather_conditions[i][0] if i < len(weather_conditions) else None,                
+        for day in range(14):
+            temp_high, temp_low, precipitation_amount = self._calculate_temps_and_precip(columns, precipitation_data, day, response)
+            yield DayForecastItem(
+                country=meta_data.get('country'),
+                state=meta_data.get('state'),
+                city=meta_data.get('city'),
+                weather_condition=weather_conditions[day][0] if day < len(weather_conditions) and weather_conditions[day] else None,
                 temp_high=temp_high,
                 temp_low=temp_low,
-                precipitation_chance=columns[i][4].replace('%', '') if len(columns[i]) > 4 else None,
-                precipitation_amount=float(precipitation_amount),
+                precipitation_chance=columns[day][4].replace('%', '') if len(columns[day]) > 4 else None,
+                precipitation_amount=float(precipitation_amount) if precipitation_amount else 0.0,
                 wind_speed=None,
-                humidity= None,
+                humidity=None,
                 source='MeteoBlue',
-                collection_date= current_date,
-                forecasted_day= current_date + timedelta(days=i)
+                collection_date=current_date,
+                forecasted_day=current_date + timedelta(days=day)
             )
-            yield item
 
+    # Helper Methods
+    def _extract_table_data(self, response):
+        rows = response.css('table.forecast-table tr')
+        columns = [[] for _ in range(14)]
+
+        for row in rows[1:5] + rows[13:14]:  # Skip irrelevant rows
+            data = row.css('td::text').getall()
+            if data:
+                for i, cell in enumerate(data):
+                    if i < 14:
+                        columns[i].append(cell.strip())
+        return columns
+
+    def _extract_weather_conditions(self, response):
+        rows = response.css('table.forecast-table tr')
+        conditions = [[] for _ in range(14)]
         
+        for row in rows:
+            for i, img in enumerate(row.xpath('td/img')):
+                title = img.xpath('@title').get()
+                if title:
+                    conditions[i].append(title.strip())
+        return conditions
+
+    def _parse_precipitation_data(self, response):
+        data_str = response.xpath('//*[@id="canvas_14_days_forecast_precipitations"]/@data-precipitation').get()
+        
+        try:
+            return json.loads(data_str) if data_str else [None] * 14
+        except json.JSONDecodeError:
+            self.logger.error(f"Failed to parse precipitation data: {data_str}")
+            return [None] * 14
+
+    def _calculate_temps_and_precip(self, columns, precipitation_data, day, response):
+        temp_unit = response.css('.h1.current-temp::text').re_first(r'°[CF]')
+        
+        temp_high = columns[day][2].replace('°', '') if len(columns[day]) > 2 else None
+        temp_low = columns[day][3].replace('°', '') if len(columns[day]) > 3 else None
+        precipitation_amount = precipitation_data[day] if day < len(precipitation_data) else None
+
+        # Explicitly check for None rather than falsy values to handle `0`
+        if temp_high is not None and temp_unit == '°F':
+            temp_high = fahrenheit_to_celsius(temp_high)
+        if temp_low is not None and temp_unit == '°F':
+            temp_low = fahrenheit_to_celsius(temp_low)
+        if precipitation_amount is not None and temp_unit == '°F':
+            precipitation_amount = inch_to_mm(float(precipitation_amount))
+
+        return temp_high, temp_low, precipitation_amount
+

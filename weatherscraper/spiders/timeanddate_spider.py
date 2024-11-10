@@ -9,25 +9,66 @@ from weatherscraper.utils import fahrenheit_to_celsius, inch_to_mm, initialize_d
 
 class TimeAndDateSpider(scrapy.Spider):
     name = "TimeAndDate"
-    locations = []
     driver = None  # To store the WebDriver instance
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.locations = load_locations("TimeAndDate")
-        self.driver = initialize_driver()  # Initialize the driver here
+        self.driver = initialize_driver()
 
     def close(self, reason):
-        if self.driver:  # Check if driver is initialized
-            self.driver.quit()  # Close the driver
+        if self.driver:
+            self.driver.quit()
 
     def start_requests(self):
         for location in self.locations:
-            url = location.get('url')
-            meta = {'city': location.get('city'), 'country': location.get('country'), 'state': location.get('state')}
-            yield SeleniumRequest(url=url, callback=self.parse, wait_time=10, meta=meta)
+            yield SeleniumRequest(
+                url=location.get('url'),
+                callback=self.parse,
+                wait_time=10,
+                meta={
+                    'city': location.get('city'),
+                    'country': location.get('country'),
+                    'state': location.get('state')
+                }
+            )
 
     def parse(self, response):
+        self._accept_cookies()
+        
+        city = response.meta.get('city')
+        country = response.meta.get('country')
+        state = response.meta.get('state')
+        current_date = datetime.now(timezone.utc)
+        table_rows = response.css('#wt-ext > tbody > tr')
+        
+        for index, row in enumerate(table_rows):
+            temp_text = row.css('td:nth-child(3)::text').get()
+            temp_high, temp_low = self._extract_temperature(temp_text)
+            
+            weather_condition = row.css('td.small::text').get()
+            wind_speed = self._extract_wind_speed(row)
+            precipitation_chance = row.css('td:nth-child(9)::text').get()
+            precipitation_amount = self._extract_precipitation_amount(row, index)
+            humidity = self._extract_humidity(row, index)
+            
+            yield DayForecastItem(
+                city=city,
+                state=state,
+                country=country,
+                temp_high=temp_high,
+                temp_low=temp_low,
+                wind_speed=wind_speed,
+                precipitation_chance=precipitation_chance.replace('%', ''),
+                precipitation_amount=precipitation_amount,
+                humidity=humidity,
+                weather_condition=weather_condition,
+                source="TimeAndDate",
+                collection_date=current_date,
+                forecasted_day=current_date + timedelta(days=index)
+            )
+
+    def _accept_cookies(self):
         try:
             accept_button = WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable((By.XPATH, '//*[@id="qc-cmp2-ui"]/div[2]/div/button[2]'))
@@ -36,78 +77,45 @@ class TimeAndDateSpider(scrapy.Spider):
         except Exception as e:
             self.logger.info(f"Failed to find and click the accept button: {e}")
 
-        city = response.meta.get('city')
-        country = response.meta.get('country')
-        state = response.meta.get('state')
-        
-        current_date = datetime.now(timezone.utc)
-
-        table_rows = response.css('#wt-ext > tbody > tr')
-        
-        for index, row in enumerate(table_rows):
-            temp_text = row.css('td:nth-child(3)::text').get()
-            if temp_text:
-                temps = temp_text.split('/')
-                if '°F' in temp_text:
-                    temp_high, temp_low = map(self.process_temperature, temps, ['F', 'F'])
-                elif '°C' in temp_text:
-                    temp_high, temp_low = map(self.process_temperature, temps, ['C', 'C'])
-                else:
-                    temp_high, temp_low = map(self.process_temperature, temps)
-
-
-            weather_condition = row.css('td.small::text').get()
-
-            wind_speed_text = row.css('td:nth-child(6)::text').get()
-            wind_speed = wind_speed_text.split()[0] if wind_speed_text else None  
-            if wind_speed == 'N/A':
-                wind_speed = None
-            precipitation = row.css('td:nth-child(9)::text').get()
-            
-            precipitation_amount = row.xpath(f'//*[@id="wt-ext"]/tbody/tr[{index + 1}]/td[9]/text()').get()
-            precipitation_amount = precipitation_amount.strip()
-            if precipitation_amount == '-':
-                precipitation_amount = None
-            else:
-                precipitation_amount = precipitation_amount.replace(' mm', '').strip()
-                            
+    # Helper Methods
+    def _extract_temperature(self, temp_text):
+        if temp_text:
+            temps = temp_text.split('/')
             if '°F' in temp_text:
-                if precipitation_amount is not None:
-                    precipitation_amount = float(precipitation_amount.replace('"', '').strip())
-                    precipitation_amount = inch_to_mm(precipitation_amount)
-                if wind_speed is not None:
-                    wind_speed = mph_to_kmh(wind_speed)
-                
-            humidity = row.xpath(f'//*[@id="wt-ext"]/tbody/tr[{index + 1}]/td[7]/text()').get()
-            if humidity:
-                humidity = humidity.replace('%', '').strip()
+                return map(self.process_temperature, temps, ['F', 'F'])
+            elif '°C' in temp_text:
+                return map(self.process_temperature, temps, ['C', 'C'])
+            return map(self.process_temperature, temps)
+        return None, None
 
-            item = DayForecastItem(
-                city=city,
-                state=state,
-                country=country,
-                temp_high=temp_high,
-                temp_low=temp_low,
-                wind_speed=wind_speed,
-                precipitation_chance=precipitation.replace('%', ''),
-                precipitation_amount=precipitation_amount,
-                humidity=humidity,
-                weather_condition=weather_condition,
-                source="TimeAndDate",
-                collection_date=current_date,
-                forecasted_day=current_date + timedelta(days=index)  
-            )
-            yield item
+    def _extract_wind_speed(self, row):
+        wind_speed_text = row.css('td:nth-child(6)::text').get()
+        if wind_speed_text == 'N/A':
+            return None
+        if 'mph' in wind_speed_text:
+            return mph_to_kmh(wind_speed_text.split()[0])
+        return wind_speed_text.split()[0]
+
+    def _extract_precipitation_amount(self, row, index):
+        precipitation_amount = row.xpath(f'//*[@id="wt-ext"]/tbody/tr[{index + 1}]/td[9]/text()').get()
+        if precipitation_amount == '-':
+            return None
+        precipitation_amount = precipitation_amount.replace(' mm', '').strip()
+        if '°F' in row.css('td:nth-child(3)::text').get():
+            precipitation_amount = inch_to_mm(float(precipitation_amount.replace('"', '').strip()))
+        return precipitation_amount
+
+    def _extract_humidity(self, row, index):
+        humidity = row.xpath(f'//*[@id="wt-ext"]/tbody/tr[{index + 1}]/td[7]/text()').get()
+        return humidity.replace('%', '').strip() if humidity else None
 
     def process_temperature(self, temp_text, unit=None):
         temp_text = temp_text.strip()
         if unit == 'F' or '°F' in temp_text:
-            fahrenheit = temp_text.replace('°F', '').strip()
-            return fahrenheit_to_celsius(fahrenheit)
-        elif unit == 'C' or '°C' in temp_text:
+            return fahrenheit_to_celsius(temp_text.replace('°F', '').strip())
+        if unit == 'C' or '°C' in temp_text:
             return float(temp_text.replace('°C', '').strip())
-        else:
-            try:
-                return float(temp_text)
-            except ValueError:
-                return None
+        try:
+            return float(temp_text)
+        except ValueError:
+            return None
