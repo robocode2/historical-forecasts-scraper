@@ -50,6 +50,7 @@ requests-file==2.1.0
 scrapeops_scrapy==0.5.4
 Scrapy==2.11.2
 scrapy-selenium==0.0.7
+scrapyd-client==1.2.3
 scrapydweb==1.5.0
 selenium==4.21.0
 service-identity==24.1.0
@@ -64,9 +65,18 @@ trio-websocket==0.11.1
 Twisted==24.3.0
 typing_extensions==4.12.1
 tzlocal==1.5.1
+uberegg==0.1.1
 urllib3==2.2.1
 w3lib==2.0.0
 webdriver-manager==4.0.1
 Werkzeug==2.0.0
 wsproto==1.2.0
 zope.interface==6.4.post2
+scrapeops-scrapy-proxy-sdk==1.0
+scrapeops_scrapy==0.5.4
+Scrapy==2.11.2
+scrapy-autounit==0.0.32
+scrapy-proxies==0.4
+scrapy-rotating-proxies==0.6.2
+scrapy-selenium==0.0.7
+scrapy-user-agents==0.1.1
