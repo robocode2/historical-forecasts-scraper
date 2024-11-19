@@ -91,12 +91,6 @@
       "url": "https://weather.com/weather/tenday/l/-34.60,-58.38"
     },
     {
-      "city": "Mexico City",
-      "state": "",
-      "country": "Mexico",
-      "url": "https://weather.com/weather/tenday/l/19.43,-99.13"
-    },
-    {
       "city": "Cairo",
       "state": "",
       "country": "Egypt",
@@ -175,12 +169,6 @@
       "url": "https://weather.com/weather/tenday/l/48.21,16.37"
     },
     {
-      "city": "Sydney",
-      "state": "",
-      "country": "Australia",
-      "url": "https://weather.com/weather/tenday/l/-33.87,151.21"
-    },
-    {
       "city": "Hong Kong",
       "state": "",
       "country": "China",
@@ -193,40 +181,10 @@
       "url": "https://weather.com/weather/tenday/l/-23.55,-46.63"
     },
     {
-      "city": "Jakarta",
-      "state": "",
-      "country": "Indonesia",
-      "url": "https://weather.com/weather/tenday/l/-6.21,106.85"
-    },
-    {
-      "city": "Cairo",
-      "state": "",
-      "country": "Egypt",
-      "url": "https://weather.com/weather/tenday/l/30.05,31.25"
-    },
-    {
-      "city": "Buenos Aires",
-      "state": "",
-      "country": "Argentina",
-      "url": "https://weather.com/weather/tenday/l/-34.60,-58.38"
-    },
-    {
       "city": "Kuala Lumpur",
       "state": "",
       "country": "Malaysia",
       "url": "https://weather.com/weather/tenday/l/3.14,101.69"
-    },
-    {
-      "city": "Bangkok",
-      "state": "",
-      "country": "Thailand",
-      "url": "https://weather.com/weather/tenday/l/13.75,100.52"
-    },
-    {
-      "city": "Singapore",
-      "state": "",
-      "country": "Singapore",
-      "url": "https://weather.com/weather/tenday/l/1.35,103.82"
     },
     {
       "city": "Istanbul",
@@ -235,40 +193,10 @@
       "url": "https://weather.com/weather/tenday/l/41.01,28.95"
     },
     {
-      "city": "Moscow",
-      "state": "",
-      "country": "Russia",
-      "url": "https://weather.com/weather/tenday/l/55.76,37.62"
-    },
-    {
       "city": "Mexico City",
       "state": "",
       "country": "Mexico",
       "url": "https://weather.com/weather/tenday/l/19.43,-99.13"
-    },
-    {
-      "city": "Lima",
-      "state": "",
-      "country": "Peru",
-      "url": "https://weather.com/weather/tenday/l/-12.05,-77.03"
-    },
-    {
-      "city": "Athens",
-      "state": "",
-      "country": "Greece",
-      "url": "https://weather.com/weather/tenday/l/37.98,23.72"
-    },
-    {
-      "city": "Vienna",
-      "state": "",
-      "country": "Austria",
-      "url": "https://weather.com/weather/tenday/l/48.21,16.37"
-    },
-    {
-      "city": "Hong Kong",
-      "state": "",
-      "country": "China",
-      "url": "https://weather.com/weather/tenday/l/22.28,114.16"
     },
     {
     "city": "Stowe",
@@ -360,285 +288,6 @@
     "country": "Chile",
     "url": "https://weather.com/weather/tenday/l/-22.9114,-68.2012"
   }
-  ],
-  "AccuWeather": [
-    {
-      "city": "Berlin",
-      "state": "",
-      "country": "Germany",
-      "url": "https://www.accuweather.com/en/de/berlin/10178/daily-weather-forecast/178087"
-    },
-    {
-      "city": "New York",
-      "state": "NY",
-      "country": "United States",
-      "url": "https://www.accuweather.com/en/us/new-york/10007/daily-weather-forecast/349727"
-    },
-    {
-      "city": "Tokyo",
-      "state": "",
-      "country": "Japan",
-      "url": "https://www.accuweather.com/en/jp/tokyo/226396/daily-weather-forecast/226396"
-    },
-    {
-      "city": "London",
-      "state": "",
-      "country": "United Kingdom",
-      "url": "https://www.accuweather.com/en/gb/london/ec4a-2/daily-weather-forecast/328328"
-    },
-    {
-      "city": "Paris",
-      "state": "",
-      "country": "France",
-      "url": "https://www.accuweather.com/en/fr/paris/623/daily-weather-forecast/623"
-    },
-    {
-      "city": "Rome",
-      "state": "",
-      "country": "Italy",
-      "url": "https://www.accuweather.com/en/it/rome/213490/daily-weather-forecast/213490"
-    },
-    {
-      "city": "Sydney",
-      "state": "",
-      "country": "Australia",
-      "url": "https://www.accuweather.com/en/au/sydney/22889/daily-weather-forecast/22889"
-    },
-    {
-      "city": "São Paulo",
-      "state": "",
-      "country": "Brazil",
-      "url": "https://www.accuweather.com/en/br/sao-paulo/45881/daily-weather-forecast/45881"
-    },
-    {
-      "city": "Jakarta",
-      "state": "",
-      "country": "Indonesia",
-      "url": "https://www.accuweather.com/en/id/jakarta/208971/daily-weather-forecast/208971"
-    },
-    {
-      "city": "Cairo",
-      "state": "",
-      "country": "Egypt",
-      "url": "https://www.accuweather.com/en/eg/cairo/127164/daily-weather-forecast/127164"
-    },
-    {
-      "city": "Seoul",
-      "state": "",
-      "country": "South Korea",
-      "url": "https://www.accuweather.com/en/kr/seoul/226081/daily-weather-forecast/226081"
-    },
-    {
-      "city": "Dubai",
-      "state": "",
-      "country": "United Arab Emirates",
-      "url": "https://www.accuweather.com/en/ae/dubai/323091/daily-weather-forecast/323091"
-    },
-    {
-      "city": "Mumbai",
-      "state": "",
-      "country": "India",
-      "url": "https://www.accuweather.com/en/in/mumbai/204842/daily-weather-forecast/204842"
-    },
-    {
-      "city": "Los Angeles",
-      "state": "CA",
-      "country": "United States",
-      "url": "https://www.accuweather.com/en/us/los-angeles/90012/daily-weather-forecast/347625"
-    },
-    {
-      "city": "Cape Town",
-      "state": "",
-      "country": "South Africa",
-      "url": "https://www.accuweather.com/en/za/cape-town/306633/daily-weather-forecast/306633"
-    },
-    {
-      "city": "Barcelona",
-      "state": "",
-      "country": "Spain",
-      "url": "https://www.accuweather.com/en/es/barcelona/307297/daily-weather-forecast/307297"
-    },
-    {
-      "city": "Madrid",
-      "state": "",
-      "country": "Spain",
-      "url": "https://www.accuweather.com/en/es/madrid/308526/daily-weather-forecast/308526"
-    },
-    {
-      "city": "Beijing",
-      "state": "",
-      "country": "China",
-      "url": "https://www.accuweather.com/en/cn/beijing/101924/daily-weather-forecast/101924"
-    },
-    {
-      "city": "Toronto",
-      "state": "ON",
-      "country": "Canada",
-      "url": "https://www.accuweather.com/en/ca/toronto/m5h/daily-weather-forecast/55488"
-    },
-    {
-      "city": "Buenos Aires",
-      "state": "",
-      "country": "Argentina",
-      "url": "https://www.accuweather.com/en/ar/buenos-aires/7894/daily-weather-forecast/7894"
-    },
-    {
-      "city": "Lagos",
-      "state": "",
-      "country": "Nigeria",
-      "url": "https://www.accuweather.com/en/ng/lagos/694102/daily-weather-forecast/694102"
-    },
-    {
-      "city": "Kuala Lumpur",
-      "state": "",
-      "country": "Malaysia",
-      "url": "https://www.accuweather.com/en/my/kuala-lumpur/244550/daily-weather-forecast/244550"
-    },
-    {
-      "city": "Bangkok",
-      "state": "",
-      "country": "Thailand",
-      "url": "https://www.accuweather.com/en/th/bangkok/318849/daily-weather-forecast/318849"
-    },
-    {
-      "city": "Singapore",
-      "state": "",
-      "country": "Singapore",
-      "url": "https://www.accuweather.com/en/sg/singapore/300597/daily-weather-forecast/300597"
-    },
-    {
-      "city": "Istanbul",
-      "state": "",
-      "country": "Turkey",
-      "url": "https://www.accuweather.com/en/tr/istanbul/318251/daily-weather-forecast/318251"
-    },
-    {
-      "city": "Moscow",
-      "state": "",
-      "country": "Russia",
-      "url": "https://www.accuweather.com/en/ru/moscow/294021/daily-weather-forecast/294021"
-    },
-    {
-      "city": "Mexico City",
-      "state": "",
-      "country": "Mexico",
-      "url": "https://www.accuweather.com/en/mx/mexico-city/242560/daily-weather-forecast/242560"
-    },
-    {
-      "city": "Lima",
-      "state": "",
-      "country": "Peru",
-      "url": "https://www.accuweather.com/en/pe/lima/264120/daily-weather-forecast/264120"
-    },
-    {
-      "city": "Athens",
-      "state": "",
-      "country": "Greece",
-      "url": "https://www.accuweather.com/en/gr/athens/182536/daily-weather-forecast/182536"
-    },
-    {
-      "city": "Vienna",
-      "state": "",
-      "country": "Austria",
-      "url": "https://www.accuweather.com/en/at/vienna/294021/daily-weather-forecast/294021"
-    },
-    {
-      "city": "Hong Kong",
-      "state": "",
-      "country": "China",
-      "url": "https://www.accuweather.com/en/hk/hong-kong/112365/daily-weather-forecast/112365"
-    },
-      {
-        "city": "Stowe",
-        "state": "VT",
-        "country": "United States",
-        "url": "https://www.accuweather.com/en/us/stowe/5241611/current-weather/5241611"
-      },
-      {
-        "city": "Kaikoura",
-        "state": "",
-        "country": "New Zealand",
-        "url": "https://www.accuweather.com/en/nz/kaikoura/217953/current-weather/217953"
-      },
-      {
-        "city": "Purmamarca",
-        "state": "",
-        "country": "Argentina",
-        "url": "https://www.accuweather.com/en/ar/purmamarca/3839841/current-weather/3839841"
-      },
-      {
-        "city": "Hallstatt",
-        "state": "",
-        "country": "Austria",
-        "url": "https://www.accuweather.com/en/at/hallstatt/2776943/current-weather/2776943"
-      },
-      {
-        "city": "Giethoorn",
-        "state": "",
-        "country": "Netherlands",
-        "url": "https://www.accuweather.com/en/nl/giethoorn/2755517/current-weather/2755517"
-      },
-      {
-        "city": "Reine",
-        "state": "",
-        "country": "Norway",
-        "url": "https://www.accuweather.com/en/no/reine/3142127/current-weather/3142127"
-      },
-      {
-        "city": "Chefchaouen",
-        "state": "",
-        "country": "Morocco",
-        "url": "https://www.accuweather.com/en/ma/chefchaouen/2553455/current-weather/2553455"
-      },
-      {
-        "city": "Luderitz",
-        "state": "",
-        "country": "Namibia",
-        "url": "https://www.accuweather.com/en/na/luderitz/3355674/current-weather/3355674"
-      },
-      {
-        "city": "Tofo",
-        "state": "",
-        "country": "Mozambique",
-        "url": "https://www.accuweather.com/en/mz/tofo/1028575/current-weather/1028575"
-      },
-      {
-        "city": "Mawlyngkhung",
-        "state": "",
-        "country": "India",
-        "url": "https://www.accuweather.com/en/in/mawlyngkhung/1263264/current-weather/1263264"
-      },
-      {
-        "city": "Hahndorf",
-        "state": "",
-        "country": "Australia",
-        "url": "https://www.accuweather.com/en/au/hahndorf/2070212/current-weather/2070212"
-      },
-      {
-        "city": "Pai",
-        "state": "",
-        "country": "Thailand",
-        "url": "https://www.accuweather.com/en/th/pai/1151601/current-weather/1151601"
-      },
-      {
-        "city": "Colonia del Sacramento",
-        "state": "",
-        "country": "Uruguay",
-        "url": "https://www.accuweather.com/en/uy/colonia-del-sacramento/3443013/current-weather/3443013"
-      },
-      {
-        "city": "Copacabana",
-        "state": "",
-        "country": "Bolivia",
-        "url": "https://www.accuweather.com/en/bo/copacabana/10400635/current-weather/10400635"
-      },
-      {
-        "city": "San Pedro de Atacama",
-        "state": "",
-        "country": "Chile",
-        "url": "https://www.accuweather.com/en/cl/san-pedro-de-atacama/3871781/current-weather/3871781"
-      }
-    
   ],
   "MeteoBlue": [
     {
@@ -732,12 +381,6 @@
       "url": "https://www.meteoblue.com/en/weather/14-days/buenos-aires_argentina_3435910"
     },
     {
-      "city": "Mexico City",
-      "state": "",
-      "country": "Mexico",
-      "url": "https://www.meteoblue.com/en/weather/14-days/mexico-city_mexico_3530597"
-    },
-    {
       "city": "Cairo",
       "state": "",
       "country": "Egypt",
@@ -798,88 +441,16 @@
       "url": "https://www.meteoblue.com/en/weather/14-days/barcelona_spain_3128760"
     },
     {
-      "city": "Lima",
-      "state": "",
-      "country": "Peru",
-      "url": "https://www.meteoblue.com/en/weather/14-days/lima_peru_3936456"
-    },
-    {
-      "city": "Athens",
-      "state": "",
-      "country": "Greece",
-      "url": "https://www.meteoblue.com/en/weather/14-days/athens_greece_264371"
-    },
-    {
-      "city": "Vienna",
-      "state": "",
-      "country": "Austria",
-      "url": "https://www.meteoblue.com/en/weather/14-days/vienna_austria_2761369"
-    },
-    {
-      "city": "Sydney",
-      "state": "",
-      "country": "Australia",
-      "url": "https://www.meteoblue.com/en/weather/14-days/sydney_australia_2147714"
-    },
-    {
       "city": "Hong Kong",
       "state": "",
       "country": "China",
       "url": "https://www.meteoblue.com/en/weather/14-days/hong-kong_china_1819729"
     },
     {
-      "city": "São Paulo",
-      "state": "",
-      "country": "Brazil",
-      "url": "https://www.meteoblue.com/en/weather/14-days/sao-paulo_brazil_3448439"
-    },
-    {
-      "city": "Jakarta",
-      "state": "",
-      "country": "Indonesia",
-      "url": "https://www.meteoblue.com/en/weather/14-days/jakarta_indonesia_1642911"
-    },
-    {
-      "city": "Cairo",
-      "state": "",
-      "country": "Egypt",
-      "url": "https://www.meteoblue.com/en/weather/14-days/cairo_egypt_360630"
-    },
-    {
-      "city": "Buenos Aires",
-      "state": "",
-      "country": "Argentina",
-      "url": "https://www.meteoblue.com/en/weather/14-days/buenos-aires_argentina_3435910"
-    },
-    {
       "city": "Kuala Lumpur",
       "state": "",
       "country": "Malaysia",
       "url": "https://www.meteoblue.com/en/weather/14-days/kuala-lumpur_malaysia_1735161"
-    },
-    {
-      "city": "Bangkok",
-      "state": "",
-      "country": "Thailand",
-      "url": "https://www.meteoblue.com/en/weather/14-days/bangkok_thailand_1609350"
-    },
-    {
-      "city": "Singapore",
-      "state": "",
-      "country": "Singapore",
-      "url": "https://www.meteoblue.com/en/weather/14-days/singapore_singapore_1880252"
-    },
-    {
-      "city": "Istanbul",
-      "state": "",
-      "country": "Turkey",
-      "url": "https://www.meteoblue.com/en/weather/14-days/istanbul_turkey_745044"
-    },
-    {
-      "city": "Moscow",
-      "state": "",
-      "country": "Russia",
-      "url": "https://www.meteoblue.com/en/weather/14-days/moscow_russia_524901"
     },
     {
       "city": "Mexico City",
@@ -904,12 +475,6 @@
       "state": "",
       "country": "Austria",
       "url": "https://www.meteoblue.com/en/weather/14-days/vienna_austria_2761369"
-    },
-    {
-      "city": "Hong Kong",
-      "state": "",
-      "country": "China",
-      "url": "https://www.meteoblue.com/en/weather/14-days/hong-kong_china_1819729"
     },
     {
       "city": "Stowe",
@@ -1373,12 +938,6 @@
       "url": "https://www.timeanddate.com/weather/argentina/buenos-aires/ext"
     },
     {
-      "city": "Mexico City",
-      "state": "",
-      "country": "Mexico",
-      "url": "https://www.timeanddate.com/weather/mexico/mexico-city/ext"
-    },
-    {
       "city": "Cairo",
       "state": "",
       "country": "Egypt",
@@ -1469,52 +1028,16 @@
       "url": "https://www.timeanddate.com/weather/china/hong-kong/ext"
     },
     {
-      "city": "São Paulo",
-      "state": "",
-      "country": "Brazil",
-      "url": "https://www.timeanddate.com/weather/brazil/sao-paulo/ext"
-    },
-    {
       "city": "Jakarta",
       "state": "",
       "country": "Indonesia",
       "url": "https://www.timeanddate.com/weather/indonesia/jakarta/ext"
     },
     {
-      "city": "Cairo",
-      "state": "",
-      "country": "Egypt",
-      "url": "https://www.timeanddate.com/weather/egypt/cairo/ext"
-    },
-    {
       "city": "Buenos Aires",
       "state": "",
       "country": "Argentina",
       "url": "https://www.timeanddate.com/weather/argentina/buenos-aires/ext"
-    },
-    {
-      "city": "Kuala Lumpur",
-      "state": "",
-      "country": "Malaysia",
-      "url": "https://www.timeanddate.com/weather/malaysia/kuala-lumpur/ext"
-    },
-    {
-      "city": "Bangkok",
-      "state": "",
-      "country": "Thailand",
-      "url": "https://www.timeanddate.com/weather/thailand/bangkok/ext"
-    },
-    {
-      "city": "Singapore",
-      "state": "",
-      "country": "Singapore",
-      "url": "https://www.timeanddate.com/weather/singapore/singapore/ext"
-    },
-    {
-      "city": "Istanbul",
-      "state": "",
-      "country": "Turkey",
-      "url": "https://www.timeanddate.com/weather/turkey/istanbul/ext"
     },
     {
       "city": "Moscow",
@@ -1529,28 +1052,10 @@
       "url": "https://www.timeanddate.com/weather/mexico/mexico-city/ext"
     },
     {
-      "city": "Lima",
-      "state": "",
-      "country": "Peru",
-      "url": "https://www.timeanddate.com/weather/peru/lima/ext"
-    },
-    {
-      "city": "Athens",
-      "state": "",
-      "country": "Greece",
-      "url": "https://www.timeanddate.com/weather/greece/athens/ext"
-    },
-    {
       "city": "Vienna",
       "state": "",
       "country": "Austria",
       "url": "https://www.timeanddate.com/weather/austria/vienna/ext"
-    },
-    {
-      "city": "Hong Kong",
-      "state": "",
-      "country": "China",
-      "url": "https://www.timeanddate.com/weather/china/hong-kong/ext"
     },
     {
       "city": "Stowe",
