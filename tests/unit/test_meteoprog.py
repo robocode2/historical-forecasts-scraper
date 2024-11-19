@@ -13,9 +13,10 @@ class TestMeteoProgSpider(BaseUnitTest):
     
     @property
     def expected_items(self):
-        current_date = datetime(2024, 10, 6, tzinfo=timezone.utc)  # Fixed date for consistency
+        current_date = datetime(2024, 10, 6, tzinfo=timezone.utc)
 
         forecast_data = [
+        # temp_high and low are swaps to reflect the website's bug
         {'temp_high': '9', 'temp_low': '14', 'precipitation_chance': '0', 'precipitation_amount': 0, 'humidity': '67', 'wind_speed': 10.8, 'weather_condition': 'cloudy, clear at times, no precipitation', 'source': 'MeteoProg'},
         {'temp_high': '8', 'temp_low': '15', 'precipitation_chance': '0', 'precipitation_amount': 0, 'humidity': '76', 'wind_speed': 14.4, 'weather_condition': 'cloudy, clear at times, no precipitation', 'source': 'MeteoProg'},
         {'temp_high': '13', 'temp_low': '19', 'precipitation_chance': '0', 'precipitation_amount': 0, 'humidity': '71', 'wind_speed': 14.4, 'weather_condition': 'cloudy, clear at times, no precipitation', 'source': 'MeteoProg'},
@@ -39,6 +40,6 @@ class TestMeteoProgSpider(BaseUnitTest):
                 city=self.city,
                 collection_date=current_date,
                 forecasted_day=current_date + timedelta(days=i),
-                **data  # Unpack the dictionary into the DayForecastItem
+                **data
             ) for i, data in enumerate(forecast_data)
         ]

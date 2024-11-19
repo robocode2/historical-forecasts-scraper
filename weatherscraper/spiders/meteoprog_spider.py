@@ -45,8 +45,8 @@ class MeteoprogSpider(scrapy.Spider):
                 country=country,
                 state=state,
                 city=city,
-                temp_high=temp_max[i] if i < len(temp_max) else None,
-                temp_low=temp_min[i] if i < len(temp_min) else None,
+                temp_high=temp_min[i] if i < len(temp_min) else None, # the website has a bug, it swaps max/min
+                temp_low=temp_max[i] if i < len(temp_max) else None,
                 precipitation_chance=precipitation_chances[i],
                 precipitation_amount=float(precipitation_amounts[i]) if i < len(precipitation_amounts) else None,
                 humidity=humidity[i] if i < len(humidity) else None,
