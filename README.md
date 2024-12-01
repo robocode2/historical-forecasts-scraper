@@ -14,8 +14,8 @@ This file provides instructions for local development and testing.
 
 1. **Clone the Repository**
     ```bash
-    git clone git@github.com:robocode2/capstone.git
-    cd capstone
+    git clone git@github.com:robocode2/historical_forecasts_scraper.git
+    cd historical_forecasts_scraper
     ```
 
 2. **Set Up a Virtual Environment**
